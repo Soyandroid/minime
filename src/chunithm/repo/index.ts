@@ -1,3 +1,5 @@
+import { UserCourseRepository } from "./userCourse";
+
 export { Page } from "./_defs";
 
 import { UserActivityRepository } from "./userActivity";
@@ -31,4 +33,6 @@ export interface Repositories {
   userMusic(): UserMusicRepository;
 
   userPlaylog(): UserPlaylogRepository;
+
+  userCourse(): UserCourseRepository;
 }

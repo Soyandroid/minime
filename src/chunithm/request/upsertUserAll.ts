@@ -9,6 +9,7 @@ import { UserActivityJson } from "../proto/userActivity";
 import { UserRecentRatingJson } from "../proto/userRecentRating";
 import { UserPlaylogJson } from "../proto/userPlaylog";
 import { UserDataExJson } from "../proto/userDataEx";
+import { UserCourseJson } from "../proto/userCourse";
 
 export interface UpsertUserAllRequest {
   /** Integer, AiMe ID */
@@ -25,6 +26,7 @@ export interface UpsertUserAllRequest {
     userActivityList?: UserActivityJson[];
     userRecentRatingList?: UserRecentRatingJson[];
     userPlaylogList?: UserPlaylogJson[];
+    userCourseList?: UserCourseJson[];
     userDataEx?: UserDataExJson[];
 
     /** String of binary digits */
