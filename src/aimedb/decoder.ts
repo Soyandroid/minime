@@ -31,6 +31,15 @@ function readFeliCaLookupRequest(msg: Buffer): Request.FeliCaLookupRequest {
   };
 }
 
+function readFeliCaLookup2Request(msg: Buffer): Request.FeliCaLookup2Request {
+  return {
+    ...begin(msg),
+    type: "felica_lookup2",
+    idm: msg.slice(0x0030, 0x0038).toString("hex"),
+    pmm: msg.slice(0x0038, 0x0040).toString("hex"),
+  };
+}
+
 function readLogRequest(msg: Buffer): Request.LogRequest {
   // idk what any of this stuff means yet
   // field20 and field28 appear to be an aime id but that is all.
@@ -92,6 +101,7 @@ function readGoodbyeRequest(msg: Buffer): Request.GoodbyeRequest {
 const readers = new Map<number, (msg: Buffer) => Request.AimeRequest>();
 
 readers.set(0x0001, readFeliCaLookupRequest);
+readers.set(0x0011, readFeliCaLookup2Request);
 readers.set(0x0004, readLookupRequest);
 readers.set(0x0005, readRegisterRequest);
 readers.set(0x0009, readLogRequest);
