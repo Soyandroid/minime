@@ -48,8 +48,8 @@ export class Encoder extends Transform {
         buf.writeUInt16LE(0x0003, 0x0004); // cmd code
         buf.writeUInt16LE(msg.status, 0x0008);
         buf.writeUInt32LE(0x00745036, 0x0020); //??
-        buf.writeUInt32LE(0xffffffff, 0x0027); //FF
-        buf.writeUInt32LE(0xffffffff, 0x002b); //FF
+        buf.writeUInt32LE(0xffffffff, 0x0024); //FF
+        buf.writeUInt32LE(0xffffffff, 0x0028); //FF
         buf.write(msg.accessCode, 0x002c, "hex");
         buf.writeUInt16LE(0x0001, 0x0038); //00 01
 
