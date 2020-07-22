@@ -31,7 +31,7 @@ function readFeliCaLookupRequest(msg: Buffer): Request.FeliCaLookupRequest {
   };
 }
 
-function readFeliCaLookup2Request(msg: Buffer): Request.FeliCaLookup2Request {
+function readFeliCaLookupRequest2(msg: Buffer): Request.FeliCaLookup2Request {
   return {
     ...begin(msg),
     type: "felica_lookup2",
@@ -101,13 +101,13 @@ function readGoodbyeRequest(msg: Buffer): Request.GoodbyeRequest {
 const readers = new Map<number, (msg: Buffer) => Request.AimeRequest>();
 
 readers.set(0x0001, readFeliCaLookupRequest);
-readers.set(0x0011, readFeliCaLookup2Request);
 readers.set(0x0004, readLookupRequest);
 readers.set(0x0005, readRegisterRequest);
 readers.set(0x0009, readLogRequest);
 readers.set(0x000b, readCampaignRequest);
 readers.set(0x000d, readRegisterRequest);
 readers.set(0x000f, readLookupRequest2);
+readers.set(0x0011, readFeliCaLookupRequest2);
 readers.set(0x0064, readHelloRequest);
 readers.set(0x0066, readGoodbyeRequest);
 
