@@ -28,7 +28,7 @@ export function writeUserRecentRatingFromLog(
     musicId: obj.musicId.toString(),
     difficultId: obj.level.toString(),
     // game version not saved in play log, just return a fixed version now
-    romVersionCode: "1030000",
+    romVersionCode: "1035000",
     score: obj.score.toString(),
   };
 }
