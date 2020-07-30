@@ -21,11 +21,11 @@ export default async function getGameSetting(
       rebootStartTime: writeDate(rebootStartTime),
       rebootEndTime: writeDate(rebootEndTime),
       isBackgroundDistribute: "false",
-      maxCountCharacter: "300",
-      maxCountItem: "300",
-      maxCountMusic: "100",
+      maxCountCharacter: "100",
+      maxCountItem: "100",
+      maxCountMusic: "75",
     },
     isDumpUpload: "false",
-    isAou: "true",
+    isAou: "false",
   };
 }

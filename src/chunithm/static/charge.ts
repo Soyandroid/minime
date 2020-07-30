@@ -11,7 +11,7 @@ export const CHARGE_IDS = Object.freeze([
   },
   {
     id: 2230, //6 songs premium ticket
-    price: 2,
-    salePrice: 2,
+    price: 1,
+    salePrice: 1,
   },
 ]);
