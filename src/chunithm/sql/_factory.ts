@@ -1,5 +1,6 @@
 import { SqlUserActivityRepository } from "./userActivity";
 import { SqlUserCharacterRepository } from "./userCharacter";
+import { SqlUserCourseRepository } from "./userCourse";
 import { SqlUserDataRepository } from "./userData";
 import { SqlUserDataExRepository } from "./userDataEx";
 import { SqlUserDuelListRepository } from "./userDuelList";
@@ -9,9 +10,11 @@ import { SqlUserItemRepository } from "./userItem";
 import { SqlUserMapRepository } from "./userMap";
 import { SqlUserMusicRepository } from "./userMusic";
 import { SqlUserPlaylogRepository } from "./userPlaylog";
+import { SqlUserRecentRatingRepository } from "./userRecentRating";
 import { Repositories } from "../repo";
 import { UserActivityRepository } from "../repo/userActivity";
 import { UserCharacterRepository } from "../repo/userCharacter";
+import { UserCourseRepository } from "../repo/userCourse";
 import { UserDataRepository } from "../repo/userData";
 import { UserDataExRepository } from "../repo/userDataEx";
 import { UserDuelListRepository } from "../repo/userDuelList";
@@ -21,9 +24,8 @@ import { UserItemRepository } from "../repo/userItem";
 import { UserMapRepository } from "../repo/userMap";
 import { UserMusicRepository } from "../repo/userMusic";
 import { UserPlaylogRepository } from "../repo/userPlaylog";
+import { UserRecentRatingRepository } from "../repo/userRecentRating";
 import { Transaction } from "../../sql";
-import { UserCourseRepository } from "../repo/userCourse";
-import { SqlUserCourseRepository } from "./userCourse";
 
 export class SqlRepositories implements Repositories {
   constructor(private readonly _txn: Transaction) {}
@@ -34,6 +36,10 @@ export class SqlRepositories implements Repositories {
 
   userCharacter(): UserCharacterRepository {
     return new SqlUserCharacterRepository(this._txn);
+  }
+
+  userCourse(): UserCourseRepository {
+    return new SqlUserCourseRepository(this._txn);
   }
 
   userData(): UserDataRepository {
@@ -72,7 +78,7 @@ export class SqlRepositories implements Repositories {
     return new SqlUserPlaylogRepository(this._txn);
   }
 
-  userCourse(): UserCourseRepository {
-    return new SqlUserCourseRepository(this._txn);
+  userRecentRating(): UserRecentRatingRepository {
+    return new SqlUserRecentRatingRepository(this._txn);
   }
 }
