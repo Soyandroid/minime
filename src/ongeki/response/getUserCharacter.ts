@@ -1,4 +1,4 @@
-import { UserCharacterJson } from "../proto/userCharacter";
+import { UserCharacterResponseJson } from "../proto/userCharacter";
 
 export interface GetUserCharacterResponse {
   /** Integer, AiMe ID */
@@ -13,5 +13,5 @@ export interface GetUserCharacterResponse {
    */
   nextIndex: number;
 
-  userCharacterList: UserCharacterJson[];
+  userCharacterList: UserCharacterResponseJson[];
 }

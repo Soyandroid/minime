@@ -1,5 +1,6 @@
 import { Repositories } from "../repo";
 import { readAimeId } from "../proto/base";
+import { readUserBpBase } from "../proto/userBpBase";
 import { readUserCard } from "../proto/userCard";
 import { readUserChapter } from "../proto/userChapter";
 import { readUserCharacter } from "../proto/userCharacter";
@@ -7,10 +8,13 @@ import { readUserData } from "../proto/userData";
 import { readUserDeck } from "../proto/userDeck";
 import { readUserEventPoint } from "../proto/userEventPoint";
 import { readUserItem } from "../proto/userItem";
+import { readUserLoginBonus } from "../proto/userLoginBonus";
+import { readUserMissionPoint } from "../proto/userMissionPoint";
 import { readUserMusicDetail } from "../proto/userMusic";
 import { readUserMusicItem } from "../proto/userMusicItem";
 import { readUserActivity } from "../proto/userActivity";
 import { readUserPlaylog } from "../proto/userPlaylog";
+import { readUserRatinglog } from "../proto/userRatinglog";
 import { readUserStory } from "../proto/userStory";
 import { readUserTrainingRoom } from "../proto/userTrainingRoom";
 import { UpsertUserAllRequest } from "../request/upsertUserAll";
@@ -32,10 +36,6 @@ export default async function upsertUserAll(
 
   const profileId = await rep.userData().save(aimeId, profile);
 
-  // Empty lists don't get sent at all. Not sure which are potentially empty
-  // so let's just assume the answer is "all of them". Hence the use of || []
-  // everywhere.
-
   for (const item of payload.userOption) {
     await rep.userOption().save(profileId, item);
   }
@@ -52,6 +52,10 @@ export default async function upsertUserAll(
     }
 
     await rep.userActivity().save(profileId, readUserActivity(item));
+  }
+
+  for (const item of payload.userBpBaseList) {
+    await rep.userBpBase().save(profileId, readUserBpBase(item));
   }
 
   for (const item of payload.userMusicDetailList) {
@@ -90,8 +94,23 @@ export default async function upsertUserAll(
     await rep.userMusicItem().save(profileId, readUserMusicItem(item));
   }
 
+  // Added in Ongeki Plus
+  for (const item of payload.userLoginBonusList || []) {
+    await rep.userLoginBonus().save(profileId, readUserLoginBonus(item));
+  }
+
   for (const item of payload.userEventPointList) {
     await rep.userEventPoint().save(profileId, readUserEventPoint(item));
+  }
+
+  // Added in Ongeki Plus
+  for (const item of payload.userMissionPointList || []) {
+    await rep.userMissionPoint().save(profileId, readUserMissionPoint(item));
+  }
+
+  // Added in Ongeki Plus
+  for (const item of payload.userRatinglogList || []) {
+    await rep.userRatinglog().save(profileId, readUserRatinglog(item));
   }
 
   return {

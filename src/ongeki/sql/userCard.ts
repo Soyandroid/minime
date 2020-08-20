@@ -46,25 +46,6 @@ export class SqlUserCardRepository implements UserCardRepository {
     return rows.map(readRow);
   }
 
-  async loadOne(
-    profileId: Id<UserDataItem>,
-    cardId: number
-  ): Promise<UserCardItem> {
-    const stmt = sql
-      .select("c.*")
-      .from("mu3_user_card c")
-      .where("c.profile_id", profileId)
-      .where("c.card_id", cardId);
-
-    const row = await this._txn.fetchRow(stmt);
-
-    if (row === undefined) {
-      throw new Error("Database corrupted: selected card not found");
-    }
-
-    return readRow(row);
-  }
-
   save(profileId: Id<UserDataItem>, obj: UserCardItem): Promise<void> {
     const stmt = sql
       .insert("mu3_user_card", {

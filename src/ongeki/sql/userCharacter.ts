@@ -14,6 +14,7 @@ const { readRow, writeRow, colNames } = createSqlMapper({
   intimateLevel: T.number,
   intimateCount: T.number,
   intimateCountRewarded: T.number,
+  intimateCountDate: T.nullable(T.Date),
   isNew: T.boolean,
 });
 
@@ -25,9 +26,9 @@ export class SqlUserCharacterRepository implements UserCharacterRepository {
     page?: Page | undefined
   ): Promise<UserCharacterItem[]> {
     const stmt = sql
-      .select("c.*")
-      .from("mu3_user_character c")
-      .where("c.profile_id", profileId);
+      .select("*")
+      .from("mu3_user_character")
+      .where("profile_id", profileId);
 
     if (page) {
       stmt.limit(page.limit).offset(page.offset);
@@ -36,25 +37,6 @@ export class SqlUserCharacterRepository implements UserCharacterRepository {
     const rows = await this._txn.fetchRows(stmt);
 
     return rows.map(readRow);
-  }
-
-  async loadOne(
-    profileId: Id<UserDataItem>,
-    characterId: number
-  ): Promise<UserCharacterItem> {
-    const stmt = sql
-      .select("c.*")
-      .from("mu3_user_character c")
-      .where("c.profile_id", profileId)
-      .where("c.character_id", characterId);
-
-    const row = await this._txn.fetchRow(stmt);
-
-    if (row === undefined) {
-      throw new Error("Database corrupted: selected character not found");
-    }
-
-    return readRow(row);
   }
 
   save(profileId: Id<UserDataItem>, obj: UserCharacterItem): Promise<void> {

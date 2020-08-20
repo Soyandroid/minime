@@ -1,5 +1,6 @@
 import { paginationCookie } from "./_util";
 import { readAimeId } from "../proto/base";
+import { writeUserCharacter } from "../proto/userCharacter";
 import { Repositories } from "../repo";
 import { GetUserCharacterRequest } from "../request/getUserCharacter";
 import { GetUserCharacterResponse } from "../response/getUserCharacter";
@@ -21,6 +22,6 @@ export default async function getUserCharacter(
     userId: req.userId,
     length: items.length,
     nextIndex: paginationCookie(items, { maxCount, nextIndex }),
-    userCharacterList: items,
+    userCharacterList: items.map(writeUserCharacter),
   };
 }

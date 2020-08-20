@@ -1,4 +1,4 @@
-import { Crush, readDate, writeObject } from "./base";
+import { readDate, writeObject } from "./base";
 import { UserPlaylogItem } from "../model/userPlaylog";
 
 export interface UserPlaylogJson {
@@ -25,6 +25,9 @@ export interface UserPlaylogJson {
   cardId1: number;
   cardId2: number;
   cardId3: number;
+  cardLevel1: number;
+  cardLevel2: number;
+  cardLevel3: number;
   cardAttack1: number;
   cardAttack2: number;
   cardAttack3: number;
@@ -43,11 +46,13 @@ export interface UserPlaylogJson {
   judgeCriticalBreak: number;
   rateTap: number;
   rateHold: number;
+  rateFlick: number;
   rateSideTap: number;
   rateSideHold: number;
   bellCount: number;
   totalBellCount: number;
   damageCount: number;
+  overDamage: number;
   isTechNewRecord: boolean;
   isBattleNewRecord: boolean;
   isOverDamageNewRecord: boolean;
@@ -83,6 +88,9 @@ export function readUserPlaylog(json: UserPlaylogJson): UserPlaylogItem {
     cardId1: json.cardId1,
     cardId2: json.cardId2,
     cardId3: json.cardId3,
+    cardLevel1: json.cardLevel1,
+    cardLevel2: json.cardLevel2,
+    cardLevel3: json.cardLevel3,
     cardAttack1: json.cardAttack1,
     cardAttack2: json.cardAttack2,
     cardAttack3: json.cardAttack3,
@@ -101,11 +109,13 @@ export function readUserPlaylog(json: UserPlaylogJson): UserPlaylogItem {
     judgeCriticalBreak: json.judgeCriticalBreak,
     rateTap: json.rateTap,
     rateHold: json.rateHold,
+    rateFlick: json.rateFlick,
     rateSideTap: json.rateSideTap,
     rateSideHold: json.rateSideHold,
     bellCount: json.bellCount,
     totalBellCount: json.totalBellCount,
     damageCount: json.damageCount,
+    overDamage: json.overDamage,
     isTechNewRecord: json.isTechNewRecord,
     isBattleNewRecord: json.isBattleNewRecord,
     isOverDamageNewRecord: json.isOverDamageNewRecord,

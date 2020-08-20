@@ -59,13 +59,13 @@ export interface UserDataJson {
   lastPlaceName: string;
 
   /** ALLNet "region0" */
-  lastRegionId: string;
+  lastRegionId: number;
 
   /** ALLNet "region_name0" */
   lastRegionName: string;
 
-  /** ALLNet "allnet_id" string */
-  lastAllNetId: string;
+  /** ALLNet "allnet_id" */
+  lastAllNetId: number;
 
   /** Keychip ID */
   lastClientId: string;

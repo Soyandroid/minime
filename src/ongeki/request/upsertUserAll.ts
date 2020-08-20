@@ -1,4 +1,5 @@
 import { UserActivityJson } from "../proto/userActivity";
+import { UserBpBaseJson } from "../proto/userBpBase";
 import { UserCardJson } from "../proto/userCard";
 import { UserChapterJson } from "../proto/userChapter";
 import { UserCharacterJson } from "../proto/userCharacter";
@@ -6,10 +7,13 @@ import { UserDataJson } from "../proto/userData";
 import { UserDeckJson } from "../proto/userDeck";
 import { UserEventPointJson } from "../proto/userEventPoint";
 import { UserItemJson } from "../proto/userItem";
+import { UserLoginBonusJson } from "../proto/userLoginBonus";
+import { UserMissionPointJson } from "../proto/userMissionPoint";
 import { UserMusicDetailJson } from "../proto/userMusic";
 import { UserMusicItemJson } from "../proto/userMusicItem";
 import { UserOptionJson } from "../proto/userOption";
 import { UserPlaylogJson } from "../proto/userPlaylog";
+import { UserRatinglogJson } from "../proto/userRatinglog";
 import { UserRecentRatingJson } from "../proto/userRecentRating";
 import { UserStoryJson } from "../proto/userStory";
 import { UserTrainingRoomJson } from "../proto/userTrainingRoom";
@@ -25,7 +29,7 @@ export interface UpsertUserAllRequest {
     // userSessionlogList
     userActivityList: UserActivityJson[];
     userRecentRatingList: UserRecentRatingJson[];
-    // userBpBaseList
+    userBpBaseList: UserBpBaseJson[];
     // userRatingBaseBestList
     // userRatingBaseHotList
     userMusicDetailList: UserMusicDetailJson[];
@@ -37,7 +41,15 @@ export interface UpsertUserAllRequest {
     userChapterList: UserChapterJson[];
     userItemList: UserItemJson[];
     userMusicItemList: UserMusicItemJson[];
+
+    /** Added in Ongeki Plus */
+    userLoginBonusList?: UserLoginBonusJson[];
+
     userEventPointList: UserEventPointJson[];
+
+    /** Added in Ongeki Plus */
+    userMissionPointList?: UserMissionPointJson[];
+    userRatinglogList?: UserRatinglogJson[];
 
     /** String of binary digits */
     isNewMusicDetailList: string;
@@ -65,5 +77,19 @@ export interface UpsertUserAllRequest {
 
     /** String of binary digits */
     isNewEventPointList: string;
+
+    /**
+     * String of binary digits
+     *
+     * Added in Ongeki Plus
+     */
+    isNewMissionPointList?: string;
+
+    /**
+     * String of binary digits
+     *
+     * Added in Ongeki Plus
+     */
+    isNewRatinglogList?: string;
   };
 }

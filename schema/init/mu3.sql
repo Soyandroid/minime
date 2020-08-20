@@ -50,9 +50,9 @@ create table "mu3_user_data" (
     "last_play_date" text not null,
     "last_place_id" integer not null,
     "last_place_name" text not null,
-    "last_region_id" text not null,
+    "last_region_id" integer not null,
     "last_region_name" text not null,
-    "last_all_net_id" text not null,
+    "last_all_net_id" integer not null,
     "last_client_id" text not null,
     "last_used_deck_id" integer not null,
     "last_play_music_level" integer not null
@@ -76,6 +76,22 @@ create table "mu3_user_activity" (
         "profile_id",
         "kind",
         "activity_id"
+    )
+);
+
+create table "mu3_user_bp_base" (
+    "id" integer primary key not null,
+    "profile_id" integer not null
+            references "mu3_user_data"("id")
+            on delete cascade,
+    "music_id" integer not null,
+    "difficult_id" integer not null,
+    "rom_version_code" integer not null,
+    "score" integer not null,
+    constraint "mu3_user_bp_base_uq" unique (
+        "profile_id",
+        "music_id",
+        "difficult_id"
     )
 );
 
@@ -127,6 +143,7 @@ create table "mu3_user_character" (
     "intimate_level" integer not null,
     "intimate_count" integer not null,
     "intimate_count_rewarded" integer not null,
+    "intimate_count_date" text,
     "is_new" boolean not null,
     constraint "mu3_user_character_uq" unique ("profile_id", "character_id")
 );
@@ -164,6 +181,26 @@ create table "mu3_user_item" (
     "stock" integer not null,
     "is_valid" text not null,
     constraint "mu3_user_item_uq" unique ("profile_id", "item_kind", "item_id")
+);
+
+create table "mu3_user_login_bonus" (
+    "id" integer primary key not null,
+    "profile_id" integer not null
+            references "mu3_user_data"("id")
+            on delete cascade,
+    "bonus_id" integer not null,
+    "bonus_count" integer not null,
+    constraint "mu3_user_login_bonus_uq" unique ("profile_id", "bonus_id")
+);
+
+create table "mu3_user_mission_point" (
+    "id" integer primary key not null,
+    "profile_id" integer not null
+            references "mu3_user_data"("id")
+            on delete cascade,
+    "event_id" integer not null,
+    "point" integer not null,
+    constraint "mu3_user_mission_point_uq" unique ("profile_id", "event_id")
 );
 
 create table "mu3_user_music" (
@@ -223,11 +260,14 @@ create table "mu3_user_option" (
     "vol_damage" integer not null,
     "color_field" integer not null,
     "color_lane_bright" integer not null,
+    "color_lane" integer not null,
     "color_side" integer not null,
     "effect_damage" integer not null,
     "effect_pos" integer not null,
     "judge_disp" integer not null,
     "judge_pos" integer not null,
+    "judge_break" integer not null,
+    "judge_hit" integer not null,
     "matching" integer not null,
     "disp_player_lv" integer not null,
     "disp_rating" integer not null,
@@ -263,6 +303,9 @@ create table "mu3_user_playlog" (
     "card_id1" integer not null,
     "card_id2" integer not null,
     "card_id3" integer not null,
+    "card_level1" integer not null,
+    "card_level2" integer not null,
+    "card_level3" integer not null,
     "card_attack1" integer not null,
     "card_attack2" integer not null,
     "card_attack3" integer not null,
@@ -281,11 +324,13 @@ create table "mu3_user_playlog" (
     "judge_critical_break" integer not null,
     "rate_tap" integer not null,
     "rate_hold" integer not null,
+    "rate_flick" integer not null,
     "rate_side_tap" integer not null,
     "rate_side_hold" integer not null,
     "bell_count" integer not null,
     "total_bell_count" integer not null,
     "damage_count" integer not null,
+    "over_damage" integer not null,
     "is_tech_new_record" boolean not null,
     "is_battle_new_record" boolean not null,
     "is_over_damage_new_record" boolean not null,
@@ -294,6 +339,16 @@ create table "mu3_user_playlog" (
     "is_all_break" boolean not null,
     "player_rating" integer not null,
     "battle_point" integer not null
+);
+
+create table "mu3_user_ratinglog" (
+    "id" integer primary key not null,
+    "profile_id" integer not null
+            references "mu3_user_data"("id")
+            on delete cascade,
+    "data_version" text not null,
+    "highest_rating" integer not null,
+    constraint "mu3_user_ratinglog_uq" unique ("profile_id", "data_version")
 );
 
 create table "mu3_user_story" (

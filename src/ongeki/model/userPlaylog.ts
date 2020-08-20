@@ -1,9 +1,12 @@
 export interface UserPlaylogItem {
   sortNumber: number;
 
-  /** Unsigned Integer */
+  /** ALLNet place ID */
   placeId: number;
+
+  /** ALLNet place name */
   placeName: string;
+
   playDate: Date;
   userPlayDate: Date;
   musicId: number;
@@ -24,6 +27,9 @@ export interface UserPlaylogItem {
   cardId1: number;
   cardId2: number;
   cardId3: number;
+  cardLevel1: number;
+  cardLevel2: number;
+  cardLevel3: number;
   cardAttack1: number;
   cardAttack2: number;
   cardAttack3: number;
@@ -42,11 +48,13 @@ export interface UserPlaylogItem {
   judgeCriticalBreak: number;
   rateTap: number;
   rateHold: number;
+  rateFlick: number;
   rateSideTap: number;
   rateSideHold: number;
   bellCount: number;
   totalBellCount: number;
   damageCount: number;
+  overDamage: number;
   isTechNewRecord: boolean;
   isBattleNewRecord: boolean;
   isOverDamageNewRecord: boolean;

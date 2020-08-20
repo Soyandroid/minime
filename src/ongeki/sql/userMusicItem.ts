@@ -34,25 +34,6 @@ export class SqlUserMusicItemRepository implements UserMusicItemRepository {
     return rows.map(readRow);
   }
 
-  async loadOne(
-    profileId: Id<UserDataItem>,
-    musicId: number
-  ): Promise<UserMusicItemItem> {
-    const stmt = sql
-      .select("c.*")
-      .from("mu3_user_music_item c")
-      .where("c.profile_id", profileId)
-      .where("c.music_id", musicId);
-
-    const row = await this._txn.fetchRow(stmt);
-
-    if (row === undefined) {
-      throw new Error("Database corrupted: selected music item not found");
-    }
-
-    return readRow(row);
-  }
-
   save(profileId: Id<UserDataItem>, obj: UserMusicItemItem): Promise<void> {
     const stmt = sql
       .insert("mu3_user_music_item", {

@@ -4,7 +4,7 @@ export interface GetGameSaleResponse {
   /** Integer */
   type: number;
 
-  /** Integer */
+  /** Integer, number of results returned */
   length: number;
 
   gameSaleList: GameSaleJson[];

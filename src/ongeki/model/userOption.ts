@@ -18,11 +18,14 @@ export interface UserOptionItem {
   volDamage: number;
   colorField: number;
   colorLaneBright: number;
+  colorLane: number;
   colorSide: number;
   effectDamage: number;
   effectPos: number;
   judgeDisp: number;
   judgePos: number;
+  judgeBreak: number;
+  judgeHit: number;
   matching: number;
   dispPlayerLv: number;
   dispRating: number;

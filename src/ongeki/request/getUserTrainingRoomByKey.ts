@@ -1,5 +1,5 @@
 export interface GetUserTrainingRoomByKeyRequest {
-  authKey: string;
+  authKey?: string;
 
   /** Integer, AiMe ID */
   userId: number;
