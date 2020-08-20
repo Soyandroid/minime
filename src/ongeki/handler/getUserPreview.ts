@@ -7,7 +7,9 @@ export default async function getUserPreview(
   rep: Repositories,
   req: GetUserPreviewRequest
 ): Promise<GetUserPreviewResponse | null> {
+  console.log("userId: %d", req.userId);
   const aimeId = readAimeId(req.userId);
+  console.log("aimeId: %d", aimeId);
   const profileId = await rep.userData().tryLookup(aimeId);
 
   // Return a stub JSON object if the player lacks a profile; the null
