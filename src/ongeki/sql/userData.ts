@@ -42,7 +42,7 @@ const { readRow, writeRow } = createSqlMapper({
   sumBattleExpertHighScore: T.bigint,
   sumBattleMasterHighScore: T.bigint,
   sumBattleLunaticHighScore: T.bigint,
-  eventWatchedDate: T.Date,
+  eventWatchedDate: T.nullable(T.Date),
   firstGameId: T.string,
   firstRomVersion: T.string,
   firstDataVersion: T.string,

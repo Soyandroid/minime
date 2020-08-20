@@ -38,7 +38,7 @@ export interface UserDataItem {
   sumBattleExpertHighScore: bigint;
   sumBattleMasterHighScore: bigint;
   sumBattleLunaticHighScore: bigint;
-  eventWatchedDate: Date;
+  eventWatchedDate: Date | undefined;
   firstGameId: string;
   firstRomVersion: string;
   firstDataVersion: string;

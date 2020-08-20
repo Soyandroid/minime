@@ -13,7 +13,7 @@ const { readRow, writeRow, colNames } = createSqlMapper({
   userId: T.number,
   roomId: T.number,
   cardId: T.number,
-  valueDate: T.Date,
+  valueDate: T.nullable(T.Date),
 });
 
 export class SqlUserTrainingRoomRepository implements UserTrainingRoomRepository {

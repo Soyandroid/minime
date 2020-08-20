@@ -11,7 +11,7 @@ export function readUserRegion(json: UserRegionJson): UserRegionItem {
   return {
     regionId: json.regionId,
     playCount: json.playCount,
-    created: readDate(json.created),
+    created: readDate(json.created)!,
   };
 }
 

@@ -38,7 +38,7 @@ create table "mu3_user_data" (
     "sum_battle_expert_high_score" integer not null,
     "sum_battle_master_high_score" integer not null,
     "sum_battle_lunatic_high_score" integer not null,
-    "event_watched_date" text not null,
+    "event_watched_date" text,
     "first_game_id" text not null,
     "first_rom_version" text not null,
     "first_data_version" text not null,
@@ -109,8 +109,8 @@ create table "mu3_user_card" (
     "print_count" integer not null,
     "use_count" integer not null,
     "is_new" boolean not null,
-    "kaika_date" text not null,
-    "cho_kaika_date" text not null,
+    "kaika_date" text,
+    "cho_kaika_date" text,
     "skill_id" integer not null,
     "is_acquired" boolean not null,
     "created" text not null,
@@ -370,6 +370,6 @@ create table "mu3_user_training_room" (
     "user_id" integer not null,
     "room_id" integer not null,
     "card_id" integer not null,
-    "value_date" text not null,
+    "value_date" text,
     constraint "mu3_user_training_room_uq" unique ("profile_id", "room_id")
 );

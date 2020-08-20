@@ -3,5 +3,5 @@ export interface UserTrainingRoomItem {
   userId: number;
   roomId: number;
   cardId: number;
-  valueDate: Date;
+  valueDate: Date | undefined;
 };

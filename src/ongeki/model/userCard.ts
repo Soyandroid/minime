@@ -8,8 +8,8 @@ export interface UserCardItem {
   printCount: number;
   useCount: number;
   isNew: boolean;
-  kaikaDate: Date;
-  choKaikaDate: Date;
+  kaikaDate: Date | undefined;
+  choKaikaDate: Date | undefined;
   skillId: number;
   isAcquired: boolean;
   created: Date;

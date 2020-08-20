@@ -23,20 +23,15 @@ export function writeBigInt(num: bigint): number {
   return parseInt(num as any);
 }
 
-export function readDate(str: string): Date {
+export function readDate(str: string): Date | undefined {
   // If we ever need to change this then we'll be able to do it from one place
   const date = new Date(str);
 
-  // Fix "Invalid Date"
-  if (isNaN(date.getTime())) {
-    date.setTime(0);
-  }
-
-  return date;
+  return isNaN(date.getTime()) ? undefined : date;
 }
 
-export function writeDate(date: Date): string {
-  return format(date, "YYYY-MM-DD HH:mm:ss");
+export function writeDate(date: Date | undefined): string | null {
+  return date !== undefined ? format(date, "YYYY-MM-DD HH:mm:ss.S") : null;
 }
 
 const MAX_SAFE_BIGINT = BigInt(Number.MAX_SAFE_INTEGER);

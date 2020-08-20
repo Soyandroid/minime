@@ -15,7 +15,7 @@ export function readUserEventRanking(json: UserEventRankingJson): UserEventRanki
   return {
     eventId: json.eventId,
     type: json.type,
-    date: readDate(json.date),
+    date: readDate(json.date)!,
     rank: json.rank,
     point: json.point,
   };

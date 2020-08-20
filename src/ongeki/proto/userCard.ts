@@ -35,7 +35,7 @@ export function readUserCard(json: UserCardJson): UserCardItem {
     choKaikaDate: readDate(json.choKaikaDate),
     skillId: json.skillId,
     isAcquired: json.isAcquired,
-    created: readDate(json.created),
+    created: readDate(json.created)!,
   };
 }
 

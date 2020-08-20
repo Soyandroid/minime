@@ -7,8 +7,8 @@ export interface GamePresentJson {
   rewardId: number;
   stock: number;
   message: string;
-  startDate: string;
-  endDate: string;
+  startDate: string | null;
+  endDate: string | null;
 }
 
 export function writeGamePresent(obj: GamePresentItem): GamePresentJson {
