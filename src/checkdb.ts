@@ -11,6 +11,7 @@ const scripts = [
   "aime.sql",
   "cm.sql",
   "idz.sql",
+  "mu3.sql",
 ];
 
 const debug = logger("app:checkdb");

@@ -20,6 +20,7 @@ import chunithm from "./chunithm";
 import diva from "./diva";
 import idzPing from "./idz/ping";
 import idzUserDb from "./idz/userdb";
+import ongeki from "./ongeki";
 import { openSqlite } from "./sql";
 import * as Swb from "./switchboard";
 
@@ -47,6 +48,7 @@ import * as Swb from "./switchboard";
 
   http.createServer(chunithm(db)).listen(Swb.PORT_CHUNITHM, Swb.HOST_INT);
   http.createServer(diva).listen(Swb.PORT_DIVA, Swb.HOST_INT);
+  http.createServer(ongeki(db)).listen(Swb.PORT_ONGEKI, Swb.HOST_INT);
 
   net
     .createServer(idzUserDb(db))

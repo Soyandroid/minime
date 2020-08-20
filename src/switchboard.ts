@@ -43,6 +43,7 @@ export const PORT_IDZ = {
   ECHO1: 10010,
   ECHO2: 10011,
 };
+export const PORT_ONGEKI = 9002;
 
 //
 // Startup responses
@@ -56,6 +57,7 @@ const startupUris = new Map<string, string>();
 
 startupUris.set("SDBT", `http://${HOST_EXT}:${PORT_CHUNITHM}/`);
 startupUris.set("SBZV", `http://${HOST_EXT}:${PORT_DIVA}/`);
+startupUris.set("SDDT", `http://${HOST_EXT}:${PORT_ONGEKI}/`);
 
 export function startupHost(model: string): string {
   const val = startupHosts.get(model);

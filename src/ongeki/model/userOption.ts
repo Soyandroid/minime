@@ -1,0 +1,31 @@
+export interface UserOptionItem {
+  optionSet: number;
+  speed: number;
+  mirror: number;
+  judgeTiming: number;
+  abort: number;
+  tapSound: number;
+  volGuide: number;
+  volAll: number;
+  volTap: number;
+  volCrTap: number;
+  volHold: number;
+  volSide: number;
+  volFlick: number;
+  volBell: number;
+  volEnemy: number;
+  volSkill: number;
+  volDamage: number;
+  colorField: number;
+  colorLaneBright: number;
+  colorSide: number;
+  effectDamage: number;
+  effectPos: number;
+  judgeDisp: number;
+  judgePos: number;
+  matching: number;
+  dispPlayerLv: number;
+  dispRating: number;
+  dispBP: number;
+  headphone: number;
+}
