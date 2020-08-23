@@ -1,4 +1,4 @@
-create table "mu3_user_data" (
+create table if not exists "mu3_user_data" (
     "id" integer primary key not null,
     "player_id" integer not null
             references "aime_player"("id")
@@ -58,7 +58,7 @@ create table "mu3_user_data" (
     "last_play_music_level" integer not null
 );
 
-create table "mu3_user_activity" (
+create table if not exists "mu3_user_activity" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -79,7 +79,7 @@ create table "mu3_user_activity" (
     )
 );
 
-create table "mu3_user_bp_base" (
+create table if not exists "mu3_user_bp_base" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -95,7 +95,7 @@ create table "mu3_user_bp_base" (
     )
 );
 
-create table "mu3_user_card" (
+create table if not exists "mu3_user_card" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -117,7 +117,7 @@ create table "mu3_user_card" (
     constraint "mu3_user_card" unique ("profile_id", "card_id")
 );
 
-create table "mu3_user_chapter" (
+create table if not exists "mu3_user_chapter" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -133,7 +133,7 @@ create table "mu3_user_chapter" (
     constraint "mu3_user_chapter_uq" unique ("profile_id", "chapter_id")
 );
 
-create table "mu3_user_character" (
+create table if not exists "mu3_user_character" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -148,7 +148,7 @@ create table "mu3_user_character" (
     constraint "mu3_user_character_uq" unique ("profile_id", "character_id")
 );
 
-create table "mu3_user_deck" (
+create table if not exists "mu3_user_deck" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -160,7 +160,7 @@ create table "mu3_user_deck" (
     constraint "mu3_user_deck_uq" unique ("profile_id", "deck_id")
 );
 
-create table "mu3_user_event_point" (
+create table if not exists "mu3_user_event_point" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -171,7 +171,7 @@ create table "mu3_user_event_point" (
     constraint "mu3_user_event_point_uq" unique ("profile_id", "event_id")
 );
 
-create table "mu3_user_item" (
+create table if not exists "mu3_user_item" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -183,7 +183,7 @@ create table "mu3_user_item" (
     constraint "mu3_user_item_uq" unique ("profile_id", "item_kind", "item_id")
 );
 
-create table "mu3_user_login_bonus" (
+create table if not exists "mu3_user_login_bonus" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -193,7 +193,7 @@ create table "mu3_user_login_bonus" (
     constraint "mu3_user_login_bonus_uq" unique ("profile_id", "bonus_id")
 );
 
-create table "mu3_user_mission_point" (
+create table if not exists "mu3_user_mission_point" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -203,7 +203,7 @@ create table "mu3_user_mission_point" (
     constraint "mu3_user_mission_point_uq" unique ("profile_id", "event_id")
 );
 
-create table "mu3_user_music" (
+create table if not exists "mu3_user_music" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -227,7 +227,7 @@ create table "mu3_user_music" (
     constraint "mu3_user_music_uq" unique ("profile_id", "music_id", "level")
 );
 
-create table "mu3_user_music_item" (
+create table if not exists "mu3_user_music_item" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -237,7 +237,7 @@ create table "mu3_user_music_item" (
     constraint "mu3_user_music_item_uq" unique ("profile_id", "music_id")
 );
 
-create table "mu3_user_option" (
+create table if not exists "mu3_user_option" (
     "id" integer primary key not null
             references "mu3_user_data"("id")
             on delete cascade,
@@ -275,7 +275,7 @@ create table "mu3_user_option" (
     "headphone" integer not null
 );
 
-create table "mu3_user_playlog" (
+create table if not exists "mu3_user_playlog" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -341,7 +341,7 @@ create table "mu3_user_playlog" (
     "battle_point" integer not null
 );
 
-create table "mu3_user_ratinglog" (
+create table if not exists "mu3_user_ratinglog" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -351,7 +351,7 @@ create table "mu3_user_ratinglog" (
     constraint "mu3_user_ratinglog_uq" unique ("profile_id", "data_version")
 );
 
-create table "mu3_user_story" (
+create table if not exists "mu3_user_story" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
@@ -361,7 +361,7 @@ create table "mu3_user_story" (
     constraint "mu3_user_story_uq" unique ("profile_id", "story_id")
 );
 
-create table "mu3_user_training_room" (
+create table if not exists "mu3_user_training_room" (
     "id" integer primary key not null,
     "profile_id" integer not null
             references "mu3_user_data"("id")
