@@ -25,6 +25,7 @@ import { loadTopTen2 } from "./loadTopTen2";
 import { lockGarage } from "./lockGarage";
 import { lockProfile } from "./lockProfile";
 import { msg00AD } from "./msg00AD";
+import { msg00A2 } from "./msg00A2";
 import { saveExpedition1, saveExpedition2 } from "./saveExpedition";
 import { saveGarage } from "./saveGarage";
 import { saveNewCar } from "./saveNewCar";
@@ -36,6 +37,7 @@ import { saveTeamBanner } from "./saveTeamBanner";
 import { saveTimeAttack1, saveTimeAttack2 } from "./saveTimeAttack";
 import { saveTopic } from "./saveTopic";
 import { unlockProfile } from "./unlockProfile";
+import { updateExpedition } from "./updateExpedition";
 import { updateProvisionalStoreRank } from "./updateProvisionalStoreRank";
 import { updateTeamLeader } from "./updateTeamLeader";
 import { updateTeamMember } from "./updateTeamMember";
@@ -87,6 +89,7 @@ const funcList: ReaderFn[] = [
   lockProfile,
   lockProfileExtend,
   msg00AD,
+  msg00A2,
   saveExpedition1,
   saveExpedition2,
   saveGarage,
@@ -100,6 +103,7 @@ const funcList: ReaderFn[] = [
   saveTimeAttack2,
   saveTopic,
   unlockProfile,
+  updateExpedition,
   updateProvisionalStoreRank,
   updateResult,
   updateStoryClearNum1,
@@ -167,6 +171,9 @@ export class Decoder extends Transform {
     }
 
     const msgCode = this.state.readUInt16LE(0x30);
+    if (debug.enabled) {
+      debug("Request Message Code: %s", msgCode.toString(16));
+    }
     const msgLen = msgLengths.get(msgCode);
 
     if (msgLen === undefined) {
@@ -181,7 +188,7 @@ export class Decoder extends Transform {
       return callback(null);
     }
 
-    const reqBuf = this.state.slice(0, 0x30 + msgLen);
+    const reqBuf = this.state.slice(0, 0x32 + msgLen);
     const payloadBuf = reqBuf.slice(0x30);
 
     if (debug.enabled) {

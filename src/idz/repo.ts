@@ -2,6 +2,7 @@ import { Subtract } from "utility-types";
 
 import * as Model from "./model";
 import { AimeId, Id } from "../model";
+import { SqlWeeklyMissionsRepository } from "./sql/weeklyMissions";
 
 export type TeamSpec = Subtract<
   Model.Team,
@@ -24,6 +25,19 @@ export interface CarRepository {
   saveSelection(
     profileId: Id<Model.Profile>,
     selector: Model.CarSelector
+  ): Promise<void>;
+}
+
+export interface StampsRepository {
+  loadSelection(profileId: Id<Model.Profile>): Promise<Model.SelectedStamps>;
+
+  loadAll(profileId: Id<Model.Profile>): Promise<Set<Model.StampCode>>;
+
+  saveAll(profileId: Id<Model.Profile>, items: Set<Model.StampCode>): Promise<void>;
+
+  saveSelection(
+    profileId: Id<Model.Profile>,
+    selection: Model.SelectedStamps
   ): Promise<void>;
 }
 
@@ -134,8 +148,19 @@ export interface TimeAttackRepository {
   ): Promise<void>;
 }
 
+export interface WeeklyMissionsRepository {
+  loadAll(profileId: Id<Model.Profile>): Promise<Model.WeeklyMissions>;
+
+  saveAll(
+    profileId: Id<Model.Profile>,
+    counts: Model.WeeklyMissions
+  ): Promise<void>;
+}
+
 export interface Repositories {
   backgrounds(): FlagRepository<Model.BackgroundCode>;
+
+  stamps(): StampsRepository;
 
   car(): CarRepository;
 
@@ -145,6 +170,8 @@ export interface Repositories {
 
   // not really a facet tbh
   missions(): FacetRepository<Model.MissionState>;
+
+  myChara(): FlagRepository<Model.MyCharaCode>;
 
   profile(): ProfileRepository;
 
@@ -168,4 +195,6 @@ export interface Repositories {
   titles(): FlagRepository<Model.TitleCode>;
 
   unlocks(): FacetRepository<Model.Unlocks>;
+
+  weeklyMissions(): WeeklyMissionsRepository;
 }

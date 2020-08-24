@@ -1,7 +1,7 @@
 import { LoadGarageRequest } from "../request/loadGarage";
 import { AimeId } from "../../model";
 
-loadGarage.msgCode = 0x0090;
+loadGarage.msgCode = 0x0087;
 loadGarage.msgLen = 0x0010;
 
 export function loadGarage(buf: Buffer): LoadGarageRequest {

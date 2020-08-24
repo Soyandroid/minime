@@ -1,6 +1,6 @@
 import { UpdateTeamPointsRequest } from "../request/updateTeamPoints";
 
-updateTeamPoints.msgCode = 0x0081;
+updateTeamPoints.msgCode = 0x007b;
 updateTeamPoints.msgLen = 0x0010;
 
 export function updateTeamPoints(buf: Buffer): UpdateTeamPointsRequest {

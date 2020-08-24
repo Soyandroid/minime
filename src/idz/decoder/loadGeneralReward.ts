@@ -4,7 +4,7 @@ import {
 } from "../request/loadGeneralReward";
 import { AimeId } from "../../model";
 
-loadGeneralReward1.msgCode = 0x009c;
+loadGeneralReward1.msgCode = 0x093b;
 loadGeneralReward1.msgLen = 0x0010;
 
 export function loadGeneralReward1(buf: Buffer): LoadGeneralRewardRequest1 {

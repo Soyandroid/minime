@@ -8,6 +8,10 @@ import { AimeId } from "../../model";
 saveProfile2.msgCode = 0x0068;
 saveProfile2.msgLen = 0x0940;
 
+// saveProfile 2 does not get called in v2 from what i can tell
+// i had to add some of the new functions to make it stop complaining
+// but if you split up the versions, you can remove this request completely
+
 export function saveProfile2(buf: Buffer): SaveProfileRequest2 {
   const storyRows = new Array();
 
@@ -41,6 +45,10 @@ export function saveProfile2(buf: Buffer): SaveProfileRequest2 {
   const freeContinue = {
     validFrom: buf.readUInt32LE(0x0038),
     validTo: buf.readUInt32LE(0x003c),
+  };
+
+  const weeklyReset = {
+    endDate: buf.readUInt32LE(0x0C90),
   };
 
   return {
@@ -77,23 +85,40 @@ export function saveProfile2(buf: Buffer): SaveProfileRequest2 {
       freeCar:
         freeCar.validFrom !== 0
           ? {
-              validFrom: new Date(freeCar.validFrom * 1000),
-            }
+            validFrom: new Date(freeCar.validFrom * 1000),
+          }
           : undefined,
       freeContinue:
         freeContinue.validFrom !== 0 && freeContinue.validTo !== 0
           ? {
-              validFrom: new Date(freeContinue.validFrom * 1000),
-              validTo: new Date(freeContinue.validTo * 1000),
-            }
+            validFrom: new Date(freeContinue.validFrom * 1000),
+            validTo: new Date(freeContinue.validTo * 1000),
+          }
           : undefined,
     },
+    selectedStamps: {
+      stamp01: buf.readUInt16LE(0x0d74), //
+      stamp02: buf.readUInt16LE(0x0d76), //  THESE ARE JUST HERE TO MAKE IT STOP COMPLAINING
+      stamp03: buf.readUInt16LE(0x0d78), //
+      stamp04: buf.readUInt16LE(0x0d7a), //
+    },
+    stamps: bitmap(buf.slice(0x0d28, 0x0d4e)),
     settings: {
       music: buf.readUInt16LE(0x045a),
       pack: buf.readUInt32LE(0x0034),
       aura: buf.readUInt8(0x002c),
       paperCup: buf.readUInt8(0x00f6),
       gauges: buf.readUInt8(0x00f7),
+      drivingStyle: buf.readUInt8(0x00f7),
+    },
+    weeklyMissions: {
+      weeklyReset: new Date(weeklyReset.endDate * 1000),
+      weeklyMissionLeft: buf.readUInt16LE(0x0C84),
+      weeklyProgressLeft: buf.readUInt16LE(0x0C86),
+      weeklyParamsLeft: buf.readUInt16LE(0x0C88),
+      weeklyMissionRight: buf.readUInt16LE(0x0C8a),
+      weeklyProgressRight: buf.readUInt16LE(0x0C8c),
+      weeklyParamsRight: buf.readUInt16LE(0x0C8e),
     },
   };
 }

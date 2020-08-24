@@ -1,11 +1,13 @@
-import { BackgroundCode, CourseNo, ExtId, TitleCode } from "../model/base";
+import { BackgroundCode, CourseNo, ExtId, TitleCode, StampCode } from "../model/base";
 import { Car } from "../model/car";
 import { MissionState } from "../model/mission";
 import { Settings } from "../model/settings";
 import { Story } from "../model/story";
+import { SelectedStamps } from "../model/stamps"
 import { Tickets } from "../model/tickets";
 import { Unlocks } from "../model/unlocks";
 import { AimeId } from "../../model";
+import { WeeklyMissions } from "../model/weeklyMissions";
 
 interface SaveProfileRequestBase {
   type: "save_profile_req";
@@ -25,6 +27,9 @@ interface SaveProfileRequestBase {
   unlocks: Unlocks;
   tickets: Tickets;
   settings: Settings;
+  selectedStamps: SelectedStamps;
+  stamps: Set<StampCode>;
+  weeklyMissions: WeeklyMissions;
 }
 
 export interface SaveProfileRequest2 extends SaveProfileRequestBase {

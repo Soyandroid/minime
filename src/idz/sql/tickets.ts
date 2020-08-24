@@ -9,19 +9,19 @@ import { Transaction } from "../../sql";
 // TODO free continue
 
 export class SqlTicketsRepository implements FacetRepository<Tickets> {
-  constructor(private readonly _txn: Transaction) {}
+  constructor(private readonly _txn: Transaction) { }
 
   async load(profileId: Id<Profile>): Promise<Tickets> {
-    const loadSql = sql
+    const loadCarSql = sql
       .select("fc.*")
       .from("idz_free_car fc")
       .where("fc.id", profileId);
 
-    const row = await this._txn.fetchRow(loadSql);
+    const car_row = await this._txn.fetchRow(loadCarSql);
 
     return {
-      freeCar: row && {
-        validFrom: new Date(row.valid_from!),
+      freeCar: car_row && {
+        validFrom: new Date(car_row.valid_from!),
       },
     };
   }

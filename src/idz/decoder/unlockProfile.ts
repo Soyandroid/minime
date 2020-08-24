@@ -1,6 +1,6 @@
 import { UnlockProfileRequest } from "../request/unlockProfile";
 
-unlockProfile.msgCode = 0x006f;
+unlockProfile.msgCode = 0x006b;
 unlockProfile.msgLen = 0x0020;
 
 export function unlockProfile(buf: Buffer): UnlockProfileRequest {

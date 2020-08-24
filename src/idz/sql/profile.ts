@@ -20,7 +20,7 @@ export function _extractProfile(row: Row): Profile {
 }
 
 export class SqlProfileRepository implements ProfileRepository {
-  constructor(private readonly _txn: Transaction) {}
+  constructor(private readonly _txn: Transaction) { }
 
   async find(aimeId: AimeId): Promise<Id<Profile>> {
     const profileId = await this.peek(aimeId);

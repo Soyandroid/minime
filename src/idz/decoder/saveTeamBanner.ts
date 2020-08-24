@@ -2,7 +2,7 @@ import { SaveTeamBannerRequest } from "../request/saveTeamBanner";
 import { ExtId } from "../model/base";
 import { Team } from "../model/team";
 
-saveTeamBanner.msgCode = 0x0089;
+saveTeamBanner.msgCode = 0x0082;
 saveTeamBanner.msgLen = 0x0010;
 
 export function saveTeamBanner(buf: Buffer): SaveTeamBannerRequest {

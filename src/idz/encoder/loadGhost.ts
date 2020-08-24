@@ -5,7 +5,8 @@ export function loadGhost(res: LoadGhostResponse): Buffer {
 
   // No idea what any of this even does.
 
-  buf.writeUInt16LE(0x00a1, 0x0000);
+  //buf.writeUInt16LE(0x00a1, 0x0000);
+  buf.writeUInt16LE(0x0096, 0x0000);
   buf.writeUInt16LE(0x0005, 0x0002); // Chunk presence flags: 4 | 1
 
   for (let i = 0; i < 2; i++) {

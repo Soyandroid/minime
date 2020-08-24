@@ -2,7 +2,7 @@ import { car } from "./_car";
 import { SaveNewCarRequest } from "../request/saveNewCar";
 import { AimeId } from "../../model";
 
-saveNewCar.msgCode = 0x0079;
+saveNewCar.msgCode = 0x0075;
 saveNewCar.msgLen = 0x0090;
 
 export function saveNewCar(buf: Buffer): SaveNewCarRequest {

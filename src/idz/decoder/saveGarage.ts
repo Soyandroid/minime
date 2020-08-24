@@ -1,7 +1,7 @@
 import { car } from "./_car";
 import { SaveGarageRequest } from "../request/saveGarage";
 
-saveGarage.msgCode = 0x008e;
+saveGarage.msgCode = 0x0085;
 saveGarage.msgLen = 0x0090;
 
 export function saveGarage(buf: Buffer): SaveGarageRequest {
@@ -16,7 +16,7 @@ export function saveGarage(buf: Buffer): SaveGarageRequest {
     aimeId: buf.readUInt32LE(0x0004),
     payload: car(buf.slice(0x0008, 0x0068)),
     field_0068,
-    field_0080: buf.readUInt8(0x0080),
-    field_0081: buf.readUInt8(0x0081) !== 0,
+    field_0080: buf.readUInt8(0x0088),
+    field_0081: buf.readUInt8(0x0089) !== 0,
   };
 }

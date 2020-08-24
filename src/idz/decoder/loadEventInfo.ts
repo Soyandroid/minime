@@ -1,7 +1,7 @@
 import { LoadEventInfoRequest } from "../request/loadEventInfo";
 import { AimeId } from "../../model";
 
-loadEventInfo.msgCode = 0x00be;
+loadEventInfo.msgCode = 0x00ac;
 loadEventInfo.msgLen = 0x0010;
 
 export function loadEventInfo(buf: Buffer): LoadEventInfoRequest {

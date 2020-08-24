@@ -6,3 +6,5 @@ export type CourseNo = number & { __brand: "courseNo" };
 export type ExtId<T> = number & { __extId: T };
 export type RouteNo = number & { __brand: "routeNo" };
 export type TitleCode = number & { __brand: "titleCode" };
+export type StampCode = number & { __brand: "stampCode" };
+export type MyCharaCode = number & { __brand: "myCharaCode" };

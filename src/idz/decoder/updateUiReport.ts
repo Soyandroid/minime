@@ -1,6 +1,6 @@
 import { UpdateUiReportRequest } from "../request/updateUiReport";
 
-updateUiReport.msgCode = 0x0084;
+updateUiReport.msgCode = 0x007e;
 updateUiReport.msgLen = 0x0410;
 
 export function updateUiReport(buf: Buffer): UpdateUiReportRequest {

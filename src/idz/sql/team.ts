@@ -7,7 +7,7 @@ import { Id, generateExtId } from "../../model";
 import { Transaction } from "../../sql";
 
 export class SqlTeamRepository implements TeamRepository {
-  constructor(private readonly _txn: Transaction) {}
+  constructor(private readonly _txn: Transaction) { }
 
   async find(extId: ExtId<Team>): Promise<Id<Team>> {
     const findSql = sql

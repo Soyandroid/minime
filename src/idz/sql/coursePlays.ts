@@ -7,7 +7,7 @@ import { Id } from "../../model";
 import { Transaction } from "../../sql";
 
 export class SqlCoursePlaysRepository implements CoursePlaysRepository {
-  constructor(private readonly _txn: Transaction) {}
+  constructor(private readonly _txn: Transaction) { }
 
   async loadAll(profileId: Id<Profile>): Promise<Map<CourseNo, number>> {
     const loadSql = sql

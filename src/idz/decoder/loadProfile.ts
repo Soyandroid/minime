@@ -4,7 +4,7 @@ import {
 } from "../request/loadProfile";
 import { AimeId } from "../../model";
 
-loadProfile2.msgCode = 0x0067;
+loadProfile2.msgCode = 0x0667;
 loadProfile2.msgLen = 0x0020;
 
 export function loadProfile2(buf: Buffer): LoadProfileRequest2 {

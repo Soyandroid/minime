@@ -7,7 +7,7 @@ import { Id } from "../../model";
 import { Transaction } from "../../sql";
 
 export class SqlStoryRepository implements FacetRepository<Story> {
-  constructor(private readonly _txn: Transaction) {}
+  constructor(private readonly _txn: Transaction) { }
 
   async load(profileId: Id<Profile>): Promise<Story> {
     const loadSql = sql
@@ -25,11 +25,11 @@ export class SqlStoryRepository implements FacetRepository<Story> {
       rows: new Array<StoryRow>(),
     };
 
-    for (let i = 0; i < 27; i++) {
+    for (let i = 0; i < 6; i++) {
       const row: StoryRow = { cells: new Array<StoryCell>() };
 
-      for (let j = 0; j < 9; j++) {
-        row.cells.push({ a: 0, b: 0 });
+      for (let j = 0; j < 28; j++) {
+        row.cells.push({ a: 0, b: 0, c: 0 });
       }
 
       result.rows.push(row);
@@ -49,6 +49,7 @@ export class SqlStoryRepository implements FacetRepository<Story> {
 
       cell.a = parseInt(row.a!);
       cell.b = parseInt(row.b!);
+      cell.c = parseInt(row.c!);
     }
 
     return result;
@@ -76,7 +77,7 @@ export class SqlStoryRepository implements FacetRepository<Story> {
         const exCell = exRow.cells[j];
         const cell = row.cells[j];
 
-        if (cell.a === exCell.a && cell.b === exCell.b) {
+        if (cell.a === exCell.a && cell.b === exCell.b && cell.c === exCell.c) {
           continue; // Most if not all cells are unchanged on profile save.
         }
 
@@ -88,9 +89,10 @@ export class SqlStoryRepository implements FacetRepository<Story> {
             col_no: j,
             a: cell.a,
             b: cell.b,
+            c: cell.c,
           })
           .onConflict("profile_id", "row_no", "col_no")
-          .doUpdate(["a", "b"]);
+          .doUpdate(["a", "b", "c"]);
 
         await this._txn.modify(cellSql);
       }

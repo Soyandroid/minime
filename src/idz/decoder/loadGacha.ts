@@ -1,7 +1,7 @@
 import { LoadGachaRequest } from "../request/loadGacha";
 import { AimeId } from "../../model";
 
-loadGacha.msgCode = 0x00c1;
+loadGacha.msgCode = 0x00af;
 loadGacha.msgLen = 0x0010;
 
 export function loadGacha(buf: Buffer): LoadGachaRequest {

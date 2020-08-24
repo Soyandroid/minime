@@ -9,7 +9,7 @@ import { Row, Transaction } from "../../sql";
 
 export function _extractChara(row: Row): Chara {
   return {
-    gender: row.gender! as Gender,
+    gender: row.gender as Gender,
     field_02: parseInt(row.field_02!),
     field_04: parseInt(row.field_04!),
     field_06: parseInt(row.field_06!),
@@ -23,7 +23,7 @@ export function _extractChara(row: Row): Chara {
 }
 
 export class SqlCharaRepository implements FacetRepository<Chara> {
-  constructor(private readonly _txn: Transaction) {}
+  constructor(private readonly _txn: Transaction) { }
 
   async load(profileId: Id<Profile>): Promise<Chara> {
     const loadSql = sql

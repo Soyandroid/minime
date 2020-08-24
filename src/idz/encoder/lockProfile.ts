@@ -9,7 +9,7 @@ const statusCodes = {
 export function lockProfile(res: LockProfileResponse) {
   const buf = Buffer.alloc(0x0020);
 
-  buf.writeInt16LE(0x006a, 0x0000);
+  buf.writeInt16LE(0x0066, 0x0000);
   buf.writeInt8(statusCodes[res.status], 0x0018);
   buf.writeInt16LE(res.field_001A, 0x001a);
   buf.writeInt32LE(res.lockExpiry.getTime() / 1000, 0x001c);

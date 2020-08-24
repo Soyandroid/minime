@@ -22,6 +22,7 @@ import { LockProfileRequest } from "./lockProfile";
 import { LockProfileExtendRequest } from "./lockProfileExtend";
 import { LockGarageRequest } from "./lockGarage";
 import { Message00AD } from "./msg00AD";
+import { Message00A2 } from "./msg00A2";
 import { SaveExpeditionRequest } from "./saveExpedition";
 import { SaveGarageRequest } from "./saveGarage";
 import { SaveNewCarRequest } from "./saveNewCar";
@@ -32,6 +33,7 @@ import { SaveTeamBannerRequest } from "./saveTeamBanner";
 import { SaveTimeAttackRequest } from "./saveTimeAttack";
 import { SaveTopicRequest } from "./saveTopic";
 import { UnlockProfileRequest } from "./unlockProfile";
+import { UpdateExpeditionRequest } from "./updateExpedition";
 import { UpdateProvisionalStoreRankRequest } from "./updateProvisionalStoreRank";
 import { UpdateResultRequest } from "./updateResult";
 import { UpdateStoryClearNumRequest } from "./updateStoryClearNum";
@@ -66,6 +68,7 @@ export type Request =
   | LockProfileExtendRequest
   | LockGarageRequest
   | Message00AD
+  | Message00A2
   | SaveExpeditionRequest
   | SaveGarageRequest
   | SaveNewCarRequest
@@ -76,6 +79,7 @@ export type Request =
   | SaveTimeAttackRequest
   | SaveTopicRequest
   | UnlockProfileRequest
+  | UpdateExpeditionRequest
   | UpdateProvisionalStoreRankRequest
   | UpdateResultRequest
   | UpdateStoryClearNumRequest

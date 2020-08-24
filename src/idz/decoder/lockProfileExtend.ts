@@ -1,7 +1,7 @@
 import { LockProfileExtendRequest } from "../request/lockProfileExtend";
 import { AimeId } from "../../model";
 
-lockProfileExtend.msgCode = 0x006d;
+lockProfileExtend.msgCode = 0x0069;
 lockProfileExtend.msgLen = 0x0020;
 
 export function lockProfileExtend(buf: Buffer): LockProfileExtendRequest {

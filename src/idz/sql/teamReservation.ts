@@ -7,7 +7,7 @@ import { Transaction } from "../../sql";
 
 export class SqlTeamReservationRepository
   implements TeamReservationRepository {
-  constructor(private readonly _txn: Transaction) {}
+  constructor(private readonly _txn: Transaction) { }
 
   private async _lockTeam(teamId: Id<Team>): Promise<void> {
     const lockSql = sql

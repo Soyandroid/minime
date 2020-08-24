@@ -3,8 +3,10 @@ import { SqlCarRepository } from "./car";
 import { SqlCharaRepository } from "./chara";
 import { SqlCoursePlaysRepository } from "./coursePlays";
 import { SqlMissionsRepository } from "./missions";
+import { SqlMyCharaRepository } from "./mychara";
 import { SqlProfileRepository } from "./profile";
 import { SqlSettingsRepository } from "./settings";
+import { SqlStampsRepository } from "./stamps";
 import { SqlStoryRepository } from "./story";
 import { SqlTeamRepository } from "./team";
 import { SqlTeamAutoRepository } from "./teamAuto";
@@ -14,12 +16,13 @@ import { SqlTicketsRepository } from "./tickets";
 import { SqlTimeAttackRepository } from "./timeAttack";
 import { SqlTitlesRepository } from "./titles";
 import { SqlUnlocksRepository } from "./unlocks";
+import { SqlWeeklyMissionsRepository } from "./weeklyMissions";
 import * as Model from "../model";
 import * as Repo from "../repo";
 import { Transaction } from "../../sql";
 
 export class SqlRepositories implements Repo.Repositories {
-  constructor(private readonly _txn: Transaction) {}
+  constructor(private readonly _txn: Transaction) { }
 
   backgrounds(): Repo.FlagRepository<Model.BackgroundCode> {
     return new SqlBackgroundsRepository(this._txn);
@@ -41,12 +44,20 @@ export class SqlRepositories implements Repo.Repositories {
     return new SqlMissionsRepository(this._txn);
   }
 
+  myChara(): Repo.FlagRepository<Model.MyCharaCode> {
+    return new SqlMyCharaRepository(this._txn);
+  }
+
   profile(): Repo.ProfileRepository {
     return new SqlProfileRepository(this._txn);
   }
 
   settings(): Repo.FacetRepository<Model.Settings> {
     return new SqlSettingsRepository(this._txn);
+  }
+
+  stamps(): Repo.StampsRepository {
+    return new SqlStampsRepository(this._txn);
   }
 
   story(): Repo.FacetRepository<Model.Story> {
@@ -84,4 +95,9 @@ export class SqlRepositories implements Repo.Repositories {
   unlocks(): Repo.FacetRepository<Model.Unlocks> {
     return new SqlUnlocksRepository(this._txn);
   }
+
+  weeklyMissions(): Repo.WeeklyMissionsRepository {
+    return new SqlWeeklyMissionsRepository(this._txn);
+  }
+
 }

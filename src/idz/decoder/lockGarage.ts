@@ -1,6 +1,6 @@
 import { LockGarageRequest } from "../request/lockGarage";
 
-lockGarage.msgCode = 0x00a9;
+lockGarage.msgCode = 0x009e;
 lockGarage.msgLen = 0x0010;
 
 export function lockGarage(buf: Buffer): LockGarageRequest {

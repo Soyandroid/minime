@@ -27,7 +27,7 @@ function _extractRow(row: Row): Car {
 }
 
 export class SqlCarRepository implements CarRepository {
-  constructor(private readonly _txn: Transaction) {}
+  constructor(private readonly _txn: Transaction) { }
 
   async countCars(profileId: Id<Profile>): Promise<number> {
     const countSql = sql

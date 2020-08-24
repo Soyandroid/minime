@@ -3,7 +3,7 @@ import {
   UpdateStoryClearNumRequest2,
 } from "../request/updateStoryClearNum";
 
-updateStoryClearNum1.msgCode = 0x007f;
+updateStoryClearNum1.msgCode = 0x097f;
 updateStoryClearNum1.msgLen = 0x0010;
 
 export function updateStoryClearNum1(

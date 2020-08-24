@@ -7,7 +7,7 @@ export function updateProvisionalStoreRank(
 ) {
   const buf = Buffer.alloc(0x02b0);
 
-  buf.writeInt16LE(0x0083, 0x0000);
+  buf.writeInt16LE(0x007d, 0x0000);
 
   for (let i = 0; i < 10; i++) {
     const offset = 0x44 + i;

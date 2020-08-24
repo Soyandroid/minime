@@ -22,6 +22,7 @@ import { lockGarage } from "./lockGarage";
 import { lockProfile } from "./lockProfile";
 import { lockProfileExtend } from "./lockProfileExtend";
 import { msg00AD } from "./msg00AD";
+import { msg00A2 } from "./msg00A2";
 import { saveExpedition } from "./saveExpedition";
 import { saveGarage } from "./saveGarage";
 import { saveNewCar } from "./saveNewCar";
@@ -32,6 +33,7 @@ import { saveTeamBanner } from "./saveTeamBanner";
 import { saveTimeAttack } from "./saveTimeAttack";
 import { saveTopic } from "./saveTopic";
 import { unlockProfile } from "./unlockProfile";
+import { updateExpedition } from "./updateExpedition";
 import { updateProvisionalStoreRank } from "./updateProvisionalStoreRank";
 import { updateResult } from "./updateResult";
 import { updateStoryClearNum } from "./updateStoryClearNum";
@@ -121,6 +123,9 @@ export async function dispatch(
     case "msg_00AD_req":
       return msg00AD(w, req);
 
+    case "msg_00A2_req":
+      return msg00A2(w, req);
+
     case "save_expedition_req":
       return saveExpedition(w, req);
 
@@ -150,6 +155,9 @@ export async function dispatch(
 
     case "unlock_profile_req":
       return unlockProfile(w, req);
+
+    case "update_expedition_req":
+      return updateExpedition(w, req);
 
     case "update_provisional_store_rank_req":
       return updateProvisionalStoreRank(w, req);

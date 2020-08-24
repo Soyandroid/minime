@@ -1,6 +1,6 @@
 import { UpdateProvisionalStoreRankRequest } from "../request/updateProvisionalStoreRank";
 
-updateProvisionalStoreRank.msgCode = 0x0082;
+updateProvisionalStoreRank.msgCode = 0x007c;
 updateProvisionalStoreRank.msgLen = 0x0010;
 
 export function updateProvisionalStoreRank(

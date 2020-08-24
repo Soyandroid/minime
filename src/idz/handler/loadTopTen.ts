@@ -18,10 +18,18 @@ export async function loadTopTen(
     }
 
     const { routeNo, minTimestamp } = selector;
-    const src = await w.timeAttack().loadTop(routeNo, minTimestamp, 10);
+    var src = await w.timeAttack().loadTop(routeNo, minTimestamp, 10);
 
+    // TLDR: If you quit out after a TA, and then look at the leaderboards it
+    // will only load the last new record. Without doing this check
+    // and resending all 10 records for that particular route
+    // it will just override the first record.
+    // not sure if you are supposed to set a flag in the response instead
+    // but this way works, even if it does feel a little bit dirty.
     if (src.length === 0) {
       continue;
+    } else {
+      src = await w.timeAttack().loadTop(routeNo, new Date(100), 10);
     }
 
     const dest = new Array<LoadTopTenResponseRow>();

@@ -3,7 +3,7 @@ import { Team } from "../model/team";
 import { UpdateTeamLeaderRequest } from "../request/updateTeamLeader";
 import { AimeId } from "../../model";
 
-updateTeamLeader.msgCode = 0x008a;
+updateTeamLeader.msgCode = 0x0083;
 updateTeamLeader.msgLen = 0x0020;
 
 export function updateTeamLeader(buf: Buffer): UpdateTeamLeaderRequest {

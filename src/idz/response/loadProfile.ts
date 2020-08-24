@@ -1,4 +1,4 @@
-import { TitleCode } from "../model/base";
+import { TitleCode, StampCode } from "../model/base";
 import { Car } from "../model/car";
 import { Chara } from "../model/chara";
 import { MissionState } from "../model/mission";
@@ -8,6 +8,7 @@ import { Tickets } from "../model/tickets";
 import { TimeAttackScore } from "../model/timeAttack";
 import { Unlocks } from "../model/unlocks";
 import { AimeId } from "../../model";
+import { SelectedStamps, WeeklyMissions } from "../model";
 
 interface LoadProfileResponseBase {
   type: "load_profile_res";
@@ -31,6 +32,9 @@ interface LoadProfileResponseBase {
   story: Story;
   unlocks: Unlocks;
   tickets: Tickets;
+  stamps: Set<StampCode>;
+  selectedStamps: SelectedStamps;
+  weeklyMissions: WeeklyMissions;
   // giga TODO
 }
 

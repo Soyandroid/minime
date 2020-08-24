@@ -6,7 +6,7 @@ import { Id } from "../../model";
 import { Transaction } from "../../sql";
 
 export class SqlTeamAutoRepository implements TeamAutoRepository {
-  constructor(private readonly _txn: Transaction) {}
+  constructor(private readonly _txn: Transaction) { }
 
   async peek(): Promise<[TeamAuto, Id<Team>] | undefined> {
     const peekSql = sql

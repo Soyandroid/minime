@@ -3,7 +3,7 @@ import { Team } from "../model/team";
 import { UpdateTeamMemberRequest } from "../request/updateTeamMember";
 import { AimeId } from "../../model";
 
-updateTeamMember.msgCode = 0x0073;
+updateTeamMember.msgCode = 0x006f;
 updateTeamMember.msgLen = 0x0010;
 
 export function updateTeamMember(buf: Buffer): UpdateTeamMemberRequest {

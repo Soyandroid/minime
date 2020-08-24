@@ -28,3 +28,4 @@ export function encodeCar(car: Car): Buffer {
 
   return buf;
 }
+

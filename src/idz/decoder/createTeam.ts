@@ -3,7 +3,7 @@ import iconv from "iconv-lite";
 import { CreateTeamRequest } from "../request/createTeam";
 import { AimeId } from "../../model";
 
-createTeam.msgCode = 0x0071;
+createTeam.msgCode = 0x006d;
 createTeam.msgLen = 0x0050;
 
 export function createTeam(buf: Buffer): CreateTeamRequest {

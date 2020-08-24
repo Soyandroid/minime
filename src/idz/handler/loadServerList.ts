@@ -43,7 +43,7 @@ export function loadServerList(
       addr: HOST_EXT,
       udp: 10011,
     },
-    newsUrl: `http://${HOST_EXT}:10012/news`,
+    newsUrl: `http://${HOST_EXT}:10012/news/news80**.txt`,
     reportErrorUrl: `http://${HOST_EXT}:10013/error`,
   };
 }

@@ -5,7 +5,7 @@ import { chara } from "./_chara";
 import { CreateProfileRequest } from "../request/createProfile";
 import { AimeId } from "../../model";
 
-createProfile.msgCode = 0x0066;
+createProfile.msgCode = 0x0064;
 createProfile.msgLen = 0x00c0;
 
 export function createProfile(buf: Buffer): CreateProfileRequest {
@@ -19,6 +19,6 @@ export function createProfile(buf: Buffer): CreateProfileRequest {
     ),
     field_0034: buf.readUInt32LE(0x0034),
     car: car(buf.slice(0x0040, 0x00a0)),
-    chara: chara(buf.slice(0x00a0, 0x00b4)),
+    chara: chara(buf.slice(0x00a8, 0x00BC)),
   };
 }

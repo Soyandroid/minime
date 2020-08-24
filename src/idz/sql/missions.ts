@@ -7,7 +7,7 @@ import { Id } from "../../model";
 import { Transaction } from "../../sql";
 
 export class SqlMissionsRepository implements FacetRepository<MissionState> {
-  constructor(private readonly _txn: Transaction) {}
+  constructor(private readonly _txn: Transaction) { }
 
   async load(profileId: Id<Profile>): Promise<MissionState> {
     const result: MissionState = {

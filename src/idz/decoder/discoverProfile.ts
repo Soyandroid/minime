@@ -1,7 +1,7 @@
 import { DiscoverProfileRequest } from "../request/discoverProfile";
 import { AimeId } from "../../model";
 
-discoverProfile.msgCode = 0x006b;
+discoverProfile.msgCode = 0x0067;
 discoverProfile.msgLen = 0x0010;
 
 export function discoverProfile(buf: Buffer): DiscoverProfileRequest {

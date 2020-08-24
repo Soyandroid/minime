@@ -9,6 +9,6 @@ export function loadConfig(
   return {
     type: "load_config_res",
     status: 1,
-    serverVersion: 130,
+    serverVersion: 210,
   };
 }

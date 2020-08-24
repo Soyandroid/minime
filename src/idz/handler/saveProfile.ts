@@ -35,6 +35,9 @@ export async function saveProfile(
   await w.unlocks().save(profileId, req.unlocks);
   await w.settings().save(profileId, req.settings);
   await w.tickets().save(profileId, req.tickets);
+  await w.stamps().saveSelection(profileId, req.selectedStamps);
+  await w.stamps().saveAll(profileId, req.stamps);
+  await w.weeklyMissions().saveAll(profileId, req.weeklyMissions);
 
   return {
     type: "generic_res",

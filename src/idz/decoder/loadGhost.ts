@@ -1,6 +1,6 @@
 import { LoadGhostRequest } from "../request/loadGhost";
 
-loadGhost.msgCode = 0x00a0;
+loadGhost.msgCode = 0x0095;
 loadGhost.msgLen = 0x0010;
 
 export function loadGhost(buf: Buffer): LoadGhostRequest {

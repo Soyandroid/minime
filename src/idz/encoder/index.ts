@@ -28,6 +28,7 @@ import { saveNewCar } from "./saveNewCar";
 import { saveTimeAttack } from "./saveTimeAttack";
 import { saveTopic } from "./saveTopic";
 import { unlockProfile } from "./unlockProfile";
+import { updateExpedition } from "./updateExpedition";
 import { updateProvisionalStoreRank } from "./updateProvisionalStoreRank";
 import { updateStoryClearNum } from "./updateStoryClearNum";
 import { updateTeamLeader } from "./updateTeamLeader";
@@ -118,6 +119,9 @@ function encode(res: Response): Buffer {
 
     case "unlock_profile_res":
       return unlockProfile(res);
+
+    case "update_expedition_res":
+      return updateExpedition(res);
 
     case "update_provisional_store_rank_res":
       return updateProvisionalStoreRank(res);

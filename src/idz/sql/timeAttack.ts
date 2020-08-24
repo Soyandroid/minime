@@ -22,7 +22,7 @@ function _extractRow(row: Row): TimeAttackScore {
 }
 
 export class SqlTimeAttackRepository implements TimeAttackRepository {
-  constructor(private readonly _txn: Transaction) {}
+  constructor(private readonly _txn: Transaction) { }
 
   async loadTop(
     routeNo: RouteNo,

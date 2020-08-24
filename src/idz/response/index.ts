@@ -25,6 +25,7 @@ import { SaveGarageResponse } from "./saveGarage";
 import { SaveNewCarResponse } from "./saveNewCar";
 import { SaveTimeAttackResponse } from "./saveTimeAttack";
 import { SaveTopicResponse } from "./saveTopic";
+import { UpdateExpeditionResponse } from "./updateExpedition";
 import { UpdateProvisionalStoreRankResponse } from "./updateProvisionalStoreRank";
 import { UpdateStoryClearNumResponse } from "./updateStoryClearNum";
 import { UpdateTeamLeaderResponse } from "./updateTeamLeader";
@@ -55,6 +56,7 @@ export type Response =
   | LockProfileResponse
   | LoadTopTenResponse
   | UnlockProfileResponse
+  | UpdateExpeditionResponse
   | UpdateProvisionalStoreRankResponse
   | UpdateStoryClearNumResponse
   | UpdateTeamLeaderResponse

@@ -28,9 +28,10 @@ function updateStoryClearNum1(res: UpdateStoryClearNumResponse1): Buffer {
 }
 
 function updateStoryClearNum2(res: UpdateStoryClearNumResponse2): Buffer {
-  const buf = Buffer.alloc(0x04f0);
+  const buf = Buffer.alloc(0x0510);
 
   buf.writeInt16LE(0x013e, 0x0000);
+
 
   return buf;
 }

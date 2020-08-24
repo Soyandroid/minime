@@ -5,8 +5,8 @@ import { LoadTopTenResponse } from "../response/loadTopTen";
 export function loadTopTen(res: LoadTopTenResponse): Buffer {
   const buf = Buffer.alloc(0x1720);
 
-  buf.writeUInt16LE(0x00b6, 0x0000);
-  buf.writeUInt16LE(res.courseCount, 0x0002);
+  buf.writeUInt16LE(0x00ce, 0x0000);
+  buf.writeUInt16LE(res.courseCount, 0x0004);
 
   for (let i = 0; i < 3; i++) {
     if (i >= res.courses.length) {
@@ -14,10 +14,10 @@ export function loadTopTen(res: LoadTopTenResponse): Buffer {
     }
 
     const course = res.courses[i];
-    const outerOff = 0x0004 + 0x794 * i;
+    const outerOff = 0x0006 + 0x794 * i;
 
-    buf.writeUInt16LE(course.routeNo << 1, outerOff + 0x0000);
-    buf.writeUInt16LE(course.field_02, outerOff + 0x0002); // Bitmask-y?
+    buf.writeUInt16LE(course.routeNo << 1, outerOff + 0x0002);
+    buf.writeUInt16LE(course.field_02, outerOff + 0x0004); // Bitmask-y?
 
     if (course.rows.length > 0) {
       // Section times for the top result (and only top result) are sent OOB
@@ -37,7 +37,7 @@ export function loadTopTen(res: LoadTopTenResponse): Buffer {
       }
 
       const row = course.rows[j];
-      const innerOff = outerOff + 0x0010 + 0xc0 * j;
+      const innerOff = outerOff + 0x0012 + 0xc0 * j;
 
       buf.writeUInt32LE(row.field_00, innerOff + 0x0000);
       buf.writeUInt32LE((row.ta.totalTime * 1000) | 0, innerOff + 0x0004);

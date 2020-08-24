@@ -8,7 +8,7 @@ import { Transaction } from "../../sql";
 
 export class SqlBackgroundsRepository
   implements FlagRepository<BackgroundCode> {
-  constructor(private readonly _txn: Transaction) {}
+  constructor(private readonly _txn: Transaction) { }
 
   async loadAll(id: Id<Profile>): Promise<Set<BackgroundCode>> {
     const loadSql = sql

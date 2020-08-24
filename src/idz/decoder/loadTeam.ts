@@ -2,7 +2,7 @@ import { LoadTeamRequest } from "../request/loadTeam";
 import { ExtId } from "../model/base";
 import { Team } from "../model/team";
 
-loadTeam.msgCode = 0x0077;
+loadTeam.msgCode = 0x0073;
 loadTeam.msgLen = 0x0010;
 
 export function loadTeam(buf: Buffer): LoadTeamRequest {

@@ -9,7 +9,7 @@ import { Id } from "../../model";
 import { Transaction } from "../../sql";
 
 export class SqlTeamMemberRepository implements TeamMemberRepository {
-  constructor(private readonly _txn: Transaction) {}
+  constructor(private readonly _txn: Transaction) { }
 
   async findTeam(profileId: Id<Profile>): Promise<Id<Team> | undefined> {
     const findSql = sql
