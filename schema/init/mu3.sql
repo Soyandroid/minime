@@ -357,7 +357,11 @@ create table "mu3_user_story" (
             references "mu3_user_data"("id")
             on delete cascade,
     "story_id" integer not null,
+    "jewel_count" integer,
     "last_chapter_id" integer not null,
+    "last_play_music_id" integer,
+    "last_play_music_category" integer,
+    "last_play_music_level" integer,
     constraint "mu3_user_story_uq" unique ("profile_id", "story_id")
 );
 

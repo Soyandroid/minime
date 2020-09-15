@@ -10,7 +10,11 @@ import { T, createSqlMapper } from "../../sql/util";
 
 const { readRow, writeRow, colNames } = createSqlMapper({
   storyId: T.number,
+  jewelCount: T.nullable(T.number),
   lastChapterId: T.number,
+  lastPlayMusicId: T.nullable(T.number),
+  lastPlayMusicCategory: T.nullable(T.number),
+  lastPlayMusicLevel: T.nullable(T.number),
 });
 
 export class SqlUserStoryRepository implements UserStoryRepository {
