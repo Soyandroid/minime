@@ -22,13 +22,19 @@ export class SqlUserActivityRepository implements UserActivityRepository {
 
   async load(
     profileId: Id<UserDataItem>,
-    kind: number
+    kind: number,
+    size?: number | undefined
   ): Promise<UserActivityItem[]> {
     const stmt = sql
       .select("*")
       .from("mu3_user_activity")
       .where("profile_id", profileId)
-      .where("kind", kind);
+      .where("kind", kind)
+      .orderBy("sort_number DESC");
+
+    if (size !== undefined) {
+      stmt.limit(size);
+    }
 
     const rows = await this._txn.fetchRows(stmt);
 
