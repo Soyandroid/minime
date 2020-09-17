@@ -82,6 +82,21 @@ create table "cm_user_activity" (
     )
 );
 
+create table "cm_user_charge" (
+    "id" integer primary key not null,
+    "profile_id" integer not null
+            references "cm_user_data"("id")
+            on delete cascade,
+    "charge_id" integer not null,
+    "stock" integer not null,
+    "purchase_date" text not null,
+    "valid_date" text not null,
+    "param1" integer not null,
+    "param2" integer not null,
+    "param_date" text not null,
+    constraint "cm_user_charge_uq" unique ("profile_id", "charge_id")
+);
+
 create table "cm_user_course" (
     "id" integer primary key not null,
     "profile_id" integer not null
@@ -341,4 +356,17 @@ create table "cm_user_playlog" (
     "skill_effect" integer not null,
     "place_name" text not null,
     "is_maimai" text not null
+);
+
+create table "cm_user_recent_rating" (
+    "id" integer primary key not null,
+    "profile_id" integer not null
+            references "cm_user_data"("id")
+            on delete cascade,
+    "sort_order" integer not null,
+    "music_id" integer not null,
+    "difficult_id" integer not null,
+    "rom_version_code" integer not null,
+    "score" integer not null,
+    constraint "cm_user_recent_rating_uq" unique ("profile_id", "sort_order")
 );

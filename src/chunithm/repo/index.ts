@@ -1,9 +1,8 @@
-import { UserCourseRepository } from "./userCourse";
-
 export { Page } from "./_defs";
 
 import { UserActivityRepository } from "./userActivity";
 import { UserCharacterRepository } from "./userCharacter";
+import { UserCourseRepository } from "./userCourse";
 import { UserDataRepository } from "./userData";
 import { UserDataExRepository } from "./userDataEx";
 import { UserDuelListRepository } from "./userDuelList";
@@ -13,11 +12,15 @@ import { UserItemRepository } from "./userItem";
 import { UserMapRepository } from "./userMap";
 import { UserMusicRepository } from "./userMusic";
 import { UserPlaylogRepository } from "./userPlaylog";
+import { UserChargeRepository } from "./userCharge";
+import { UserRecentRatingRepository } from "./userRecentRating";
 
 export interface Repositories {
   userActivity(): UserActivityRepository;
 
   userCharacter(): UserCharacterRepository;
+
+  userCourse(): UserCourseRepository;
 
   userData(): UserDataRepository;
 
@@ -37,5 +40,9 @@ export interface Repositories {
 
   userPlaylog(): UserPlaylogRepository;
 
+  userCharge(): UserChargeRepository;
+
   userCourse(): UserCourseRepository;
+
+  userRecentRating(): UserRecentRatingRepository;
 }

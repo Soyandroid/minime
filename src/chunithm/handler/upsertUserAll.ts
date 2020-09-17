@@ -13,6 +13,8 @@ import { readUserActivity } from "../proto/userActivity";
 import { readUserDataEx } from "../proto/userDataEx";
 import { readUserDuelList } from "../proto/userDuelList";
 import { readUserPlaylog } from "../proto/userPlaylog";
+import { readUserCharge } from "../proto/userCharge";
+import { readUserRecentRating } from "../proto/userRecentRating";
 import { readUserCourse } from "../proto/userCourse";
 
 // It shouldn't need to be said really, but seeing as this message (A) requires
@@ -67,6 +69,10 @@ export default async function upsertUserAll(
     await rep.userPlaylog().save(profileId, readUserPlaylog(item));
   }
 
+  for (const item of payload.userChargeList || []) {
+    await rep.userCharge().save(profileId, readUserCharge(item));
+  }
+
   for (const item of payload.userCourseList || []) {
     await rep.userCourse().save(profileId, readUserCourse(item));
   }
@@ -78,6 +84,13 @@ export default async function upsertUserAll(
   for (const item of payload.userDuelList || []) {
     await rep.userDuelList().save(profileId, readUserDuelList(item));
   }
+
+  await rep
+    .userRecentRating()
+    .save(
+      profileId,
+      (payload.userRecentRatingList || []).map(readUserRecentRating)
+    );
 
   return { returnCode: "1" };
 }
