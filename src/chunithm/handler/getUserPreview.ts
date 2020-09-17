@@ -19,6 +19,7 @@ export default async function getUserPreview(
   }
 
   const userData = await rep.userData().load(profileId);
+  const userDataEx = await rep.userDataEx().load(profileId);
   const userCharacter = await rep
     .userCharacter()
     .loadOne(profileId, userData.characterId);
@@ -54,5 +55,7 @@ export default async function getUserPreview(
     playerLevel: userGameOption.playerLevel.toString(),
     rating: userGameOption.rating.toString(),
     headphone: userGameOption.headphone.toString(),
+    chargeState: "1",
+    userNameEx: userDataEx.extStr1,
   };
 }

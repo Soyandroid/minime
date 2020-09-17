@@ -1,3 +1,4 @@
+import { UserChargeJson } from "../proto/userCharge";
 export interface UpsertUserChargelogApiRequest {
     userId: string;
 
@@ -11,14 +12,5 @@ export interface UpsertUserChargelogApiRequest {
         regionId: string,
         clientId: string
     };
-
-    userCharge: {
-        chargeId: string,
-        stock: string,
-        purchaseDate: Date,
-        validDate: Date,
-        param1: string,
-        param2: string,
-        paramDate: Date
-    };
+    userCharge: UserChargeJson;
 }
