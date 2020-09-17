@@ -1,4 +1,4 @@
-import { Crush, writeObject } from "./base";
+import { Crush, writeObject, readWtf8 } from "./base";
 import { UserDataExItem } from "../model/userDataEx";
 
 export type UserDataExJson = Crush<UserDataExItem>;
@@ -29,11 +29,11 @@ export function readUserDataEx(json: UserDataExJson): UserDataExItem {
     ext18: parseInt(json.ext18),
     ext19: parseInt(json.ext19),
     ext20: parseInt(json.ext20),
-    extStr1: json.extStr1,
-    extStr2: json.extStr2,
-    extStr3: json.extStr3,
-    extStr4: json.extStr4,
-    extStr5: json.extStr5,
+    extStr1: readWtf8(json.extStr1), // userNameEx (name changed on chuni-net, can have Japanese)
+    extStr2: readWtf8(json.extStr2),
+    extStr3: readWtf8(json.extStr3),
+    extStr4: readWtf8(json.extStr4),
+    extStr5: readWtf8(json.extStr5),
     extLong1: BigInt(json.extLong1),
     extLong2: BigInt(json.extLong2),
     extLong3: BigInt(json.extLong3),

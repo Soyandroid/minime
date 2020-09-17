@@ -48,7 +48,7 @@ export function readUserData(json: UserDataJson): UserDataItem {
     lastDataVersion: json.lastDataVersion,
     lastPlayDate: readDate(json.lastPlayDate),
     lastPlaceId: parseInt(json.lastPlaceId),
-    lastPlaceName: json.lastPlaceName,
+    lastPlaceName: readWtf8(json.lastPlaceName),
     lastRegionId: json.lastRegionId,
     lastRegionName: json.lastRegionName,
     lastAllNetId: json.lastAllNetId,

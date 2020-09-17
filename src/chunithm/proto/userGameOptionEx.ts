@@ -7,14 +7,14 @@ export function readUserGameOptionEx(
   json: UserGameOptionExJson
 ): UserGameOptionExItem {
   return {
-    ext1: parseInt(json.ext1),
-    ext2: parseInt(json.ext2),
-    ext3: parseInt(json.ext3),
+    ext1: parseInt(json.ext1), // mirror (bool)
+    ext2: parseInt(json.ext2), // chart level (green block at music select)
+    ext3: parseInt(json.ext3), // chart inner sort
     ext4: parseInt(json.ext4),
-    ext5: parseInt(json.ext5),
-    ext6: parseInt(json.ext6),
-    ext7: parseInt(json.ext7),
-    ext8: parseInt(json.ext8),
+    ext5: parseInt(json.ext5), // overpower (bool)
+    ext6: parseInt(json.ext6), // chart offset
+    ext7: parseInt(json.ext7), // field wall (0-16)
+    ext8: parseInt(json.ext8), // short ver chara voice (bool)
     ext9: parseInt(json.ext9),
     ext10: parseInt(json.ext10),
     ext11: parseInt(json.ext11),
