@@ -65,4 +65,7 @@ export interface GetUserPreviewResponse {
   playerLevel: string;
   rating: string;
   headphone: string;
+
+  chargeState: string;
+  userNameEx: string;
 }

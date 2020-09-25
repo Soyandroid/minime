@@ -54,5 +54,8 @@ export default async function getUserPreview(
     playerLevel: userGameOption.playerLevel.toString(),
     rating: userGameOption.rating.toString(),
     headphone: userGameOption.headphone.toString(),
+
+    chargeState: "1",
+    userNameEx: userData.userName,
   };
 }
