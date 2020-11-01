@@ -7,6 +7,10 @@ create table "idz_profile" (
     "player_id" integer not null
             references "aime_player"("id")
             on delete cascade,
+    -- Major version of Initial D Zero, either 1 or 2.
+    -- The two major versions are incompatible with each other and do not
+    -- permit the player to carry progress over from one to the other.
+    "version" integer not null,
     -- TODO shop_id
     "name" text not null,
     "lv" integer not null,
@@ -16,7 +20,7 @@ create table "idz_profile" (
     "mileage" integer not null,
     "register_time" timestamp not null,
     "access_time" timestamp not null,
-    constraint "idz_profile_player_uq" unique ("player_id")
+    constraint "idz_profile_player_uq" unique ("player_id", "version")
 );
 
 create table "idz_chara" (
@@ -100,7 +104,27 @@ create table "idz_settings" (
     "pack" integer not null,
     "aura" integer not null,
     "paper_cup" integer not null, -- Not a boolean, oddly enough
-    "gauges" integer not null
+    "gauges" integer not null,
+    "driving_style" integer not null
+);
+
+create table "idz_stamp_selections" (
+    "id" integer primary key not null
+            references "idz_profile"("id")
+            on delete cascade,
+    "stamp_01" integer not null,
+    "stamp_02" integer not null,
+    "stamp_03" integer not null,
+    "stamp_04" integer not null
+);
+
+create table "idz_stamp_unlock" (
+    "id" integer primary key not null,
+    "profile_id" integer not null
+            references "idz_profile"("id")
+            on delete cascade,
+    "stamp_no",
+    constraint "idz_stamp_unlock_uq" unique ("profile_id", "stamp_no")
 );
 
 create table "idz_story_state" (
@@ -120,6 +144,7 @@ create table "idz_story_cell_state" (
     "col_no" integer not null,
     "a" integer not null,
     "b" integer not null,
+    "c" integer not null,
     constraint "idz_story_cell_state_uq" unique (
             "profile_id",
             "row_no",
@@ -202,12 +227,13 @@ create table "idz_unlocks" (
 
 create table "idz_team" (
     "id" integer primary key not null,
+    "version" integer not null,
     "ext_id" integer not null,
     "name" text not null,
     "name_bg" integer not null,
     "name_fx" integer not null,
     "register_time" timestamp not null,
-    constraint "idz_team_uq" unique ("ext_id")
+    constraint "idz_team_uq" unique ("version", "ext_id")
 );
 
 create table "idz_team_auto" (
@@ -239,4 +265,26 @@ create table "idz_team_reservation" (
             on delete cascade,
     "join_time" timestamp not null,
     "leader" boolean not null
+);
+
+create table "idz_weekly_missions" (
+    "id" integer primary key not null
+            references "idz_profile"("id")
+            on delete cascade,
+    "weekly_reset" timestamp not null,
+    "mission_left" integer not null,
+    "progress_left" integer not null,
+    "params_left" integer not null,
+    "mission_right" integer not null,
+    "progress_right" integer not null,
+    "params_right" integer not null
+);
+
+create table "idz_my_chara" (
+    "id" integer primary key not null,
+    "profile_id" integer not null
+            references "idz_profile"("id")
+            on delete cascade,
+    "my_chara_no" integer not null,
+    constraint "idz_my_chara_uq" unique ("profile_id", "my_chara_no")
 );
