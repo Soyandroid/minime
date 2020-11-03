@@ -7,3 +7,10 @@ create table "aime_player" (
     constraint "aime_player_ext_id_uq" unique ("ext_id"),
     constraint "aime_player_luid_uq" unique ("luid")
 );
+
+create table "aime_subcard" (
+    "luid" text primary key not null,
+    "aime_id" integer not null
+            references "aime_player"("id")
+            on delete cascade
+);

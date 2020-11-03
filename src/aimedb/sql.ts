@@ -13,10 +13,17 @@ class CardRepositoryImpl implements CardRepository {
       .from("aime_player p")
       .where("p.luid", luid);
 
-    const row = await this._txn.fetchRow(fetchSql);
+    let row = await this._txn.fetchRow(fetchSql);
 
     if (row === undefined) {
-      return undefined;
+      const fetchSubcardSql = sql
+        .select("p.id", "p.ext_id")
+        .from(['aime_player p', 'aime_subcard s'])
+        .where({'s.luid': luid, 'p.id': sql('s.aime_id')});
+      row = await this._txn.fetchRow(fetchSubcardSql);
+      if (row === undefined) {
+        return undefined;
+      }
     }
 
     const id = row.id!;
