@@ -6,6 +6,7 @@ import { UserPlaylogItem } from "../model/userPlaylog";
 import { UserPlaylogRepository } from "../repo/userPlaylog";
 import { Transaction } from "../../sql";
 import { T, createSqlMapper } from "../../sql/util";
+import { GameRankingItem } from "../model/gameRanking";
 
 const { readRow, writeRow } = createSqlMapper({
   orderId: T.number,
@@ -83,5 +84,27 @@ export class SqlUserPlaylogRepository implements UserPlaylogRepository {
     const rows = await this._txn.fetchRows(stmt);
 
     return rows.map(readRow);
+  }
+
+  async loadSongRanking(window: number, offset: number, size: number): Promise<GameRankingItem[]> {
+    let window_str = `-${window} days`;
+    let offset_str = `-${offset} days`;
+    const stmt = sql
+      .select("COUNT(*) AS point", "music_id")
+      .from("cm_user_playlog")
+      .where(sql(`datetime(user_play_date) > datetime('now', '${window_str}', '${offset_str}')`))
+      .where(sql(`datetime(user_play_date) <= datetime('now', '${offset_str}')`))
+      .groupBy("music_id")
+      .order("point DESC")
+      .limit(size);
+
+    const rows = await this._txn.fetchRows(stmt);
+
+    return rows.map(row => {
+      return {
+        id: T.bigint._read(row["music_id"]!),
+        point: T.bigint._read(row["point"]!),
+      };
+    });
   }
 }
