@@ -11,7 +11,7 @@ loadTopTen1.msgLen = 0x00e0;
 
 export function loadTopTen1(buf: Buffer): LoadTopTenRequest {
   const selectors = new Array<LoadTopTenRequestSelector>();
-
+  const version = 1;
   for (let i = 0; i < 32; i++) {
     selectors.push({
       routeNo: (buf.readUInt16LE(0x0004 + 2 * i) >> 1) as RouteNo,
@@ -26,6 +26,7 @@ export function loadTopTen1(buf: Buffer): LoadTopTenRequest {
     type: "load_top_ten_req",
     field_2: buf.readUInt16LE(0x0002), // Bitmask selector
     selectors,
+    version,
     field_C4: buf.readUInt8(0x00c4), // Boolean, true if profile ID is set
     field_C5: buf.readUInt8(0x00c5), // Always zero
     field_C6: buf.readUInt16LE(0x00c6),

@@ -3,8 +3,8 @@ import { createAutoTeam } from "./createAutoTeam";
 import { createProfile } from "./createProfile";
 import { createTeam } from "./createTeam";
 import { discoverProfile } from "./discoverProfile";
-import { load2on2 } from "./load2on2";
-import { loadConfig } from "./loadConfig";
+import { load2on2_1, load2on2_2 } from "./load2on2";
+import { loadConfig1, loadConfig2 } from "./loadConfig";
 import { loadEventInfo } from "./loadEventInfo";
 import { loadGacha } from "./loadGacha";
 import { loadGarage } from "./loadGarage";
@@ -42,6 +42,7 @@ import { updateUserLog } from "./updateUserLog";
 import { Repositories } from "../repo";
 import { Request } from "../request";
 import { Response } from "../response";
+import { updateExpedition } from "../decoder/updateExpedition";
 
 export async function dispatch(
   w: Repositories,
@@ -60,11 +61,17 @@ export async function dispatch(
     case "create_team_req":
       return createTeam(w, req);
 
-    case "load_2on2_req":
-      return load2on2(w, req);
+    case "load_2on2_req1":
+      return load2on2_1(w, req);
 
-    case "load_config_req":
-      return loadConfig(w, req);
+    case "load_2on2_req2":
+      return load2on2_2(w, req);
+
+    case "load_config_req1":
+      return loadConfig1(w, req);
+
+    case "load_config_req2":
+      return loadConfig2(w, req);
 
     case "discover_profile_req":
       return discoverProfile(w, req);

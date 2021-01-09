@@ -28,7 +28,7 @@ export default function idz(db: DataSource) {
       }
     } catch (error) {
       if (debug.enabled) {
-        debug("Error: %s", error.stack);
+        debug("%s", error.stack);
       }
     }
 

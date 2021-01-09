@@ -30,9 +30,10 @@ export class SqlTeamAutoRepository implements TeamAutoRepository {
     );
   }
 
-  async push(teamId: Id<Team>, auto: TeamAuto): Promise<void> {
+  async push(teamId: Id<Team>, auto: TeamAuto, version: number): Promise<void> {
     const pushSql = sql.insert("idz_team_auto", {
       id: teamId,
+      version: version,
       serial_no: auto.serialNo,
       name_idx: auto.nameIdx,
     });

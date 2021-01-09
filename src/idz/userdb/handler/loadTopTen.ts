@@ -11,17 +11,20 @@ export async function loadTopTen(
   req: LoadTopTenRequest
 ): Promise<LoadTopTenResponse> {
   const courses = new Array<LoadTopTenResponseCourse>();
-
   for (const selector of req.selectors) {
     if (courses.length >= 3) {
       break;
     }
 
     const { routeNo, minTimestamp } = selector;
-    const src = await w.timeAttack().loadTop(routeNo, minTimestamp, 10);
+    var src = await w.timeAttack().loadTop(routeNo, minTimestamp, 10, req.version);
 
+    // Hacky solution but force full reload per course if there's an updated time.
+    // Otherwise, the updated time will replace the top 1 record.
     if (src.length === 0) {
       continue;
+    } else {
+      src = await w.timeAttack().loadTop(routeNo, new Date(100), 10, req.version);
     }
 
     const dest = new Array<LoadTopTenResponseRow>();

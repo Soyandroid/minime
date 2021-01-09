@@ -16,7 +16,7 @@ export async function saveTimeAttack(
     const now = new Date();
     const profileId = await w.profile().find(req.aimeId, req.version);
 
-    await w.timeAttack().save(profileId, { ...req.payload, timestamp: now });
+    await w.timeAttack().save(profileId, req.version, { ...req.payload, timestamp: now });
   }
 
   return {

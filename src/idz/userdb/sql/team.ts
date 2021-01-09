@@ -57,13 +57,14 @@ export class SqlTeamRepository implements TeamRepository {
     await this._txn.modify(saveSql);
   }
 
-  async create(team: TeamSpec): Promise<[Id<Team>, ExtId<Team>]> {
+  async create(team: TeamSpec, version: number): Promise<[Id<Team>, ExtId<Team>]> {
     const id = this._txn.generateId<Team>();
     const extId = generateExtId() as ExtId<Team>;
 
     const createSql = sql.insert("idz_team", {
       id: id,
       ext_id: extId,
+      version: version,
       name: team.name,
       name_bg: team.nameBg,
       name_fx: team.nameFx,

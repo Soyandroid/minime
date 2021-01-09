@@ -21,7 +21,7 @@ export async function createTeam(
     registerTime: now,
   };
 
-  const [teamId, teamExtId] = await w.teams().create(teamSpec);
+  const [teamId, teamExtId] = await w.teams().create(teamSpec, req.version);
 
   await w.teamMembers().join(teamId, profileId, now);
   await w.teamMembers().makeLeader(teamId, profileId);

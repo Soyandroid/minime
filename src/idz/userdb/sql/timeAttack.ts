@@ -27,7 +27,8 @@ export class SqlTimeAttackRepository implements TimeAttackRepository {
   async loadTop(
     routeNo: RouteNo,
     minTimestamp: Date,
-    limit: number
+    limit: number,
+    version: number
   ): Promise<TopTenResult[]> {
     // We're not using an ORM here so this join-heavy SQL is unfortunately
     // going to be a boilerplated mess.
@@ -56,6 +57,7 @@ export class SqlTimeAttackRepository implements TimeAttackRepository {
       .join("idz_team t", { "tm.team_id": "t.id" })
       .where("ta.route_no", routeNo)
       .where(sql.gt("ta.timestamp", minTimestamp))
+      .where("ta.version", version)
       .orderBy(["ta.total_time asc", "ta.timestamp asc"])
       .limit(limit);
 
@@ -86,10 +88,11 @@ export class SqlTimeAttackRepository implements TimeAttackRepository {
     return rows.map(_extractRow);
   }
 
-  async save(profileId: Id<Profile>, score: TimeAttackScore): Promise<void> {
+  async save(profileId: Id<Profile>, version: number, score: TimeAttackScore): Promise<void> {
     const logSql = sql.insert("idz_ta_result", {
       id: this._txn.generateId(),
       profile_id: profileId,
+      version: version,
       route_no: score.routeNo,
       total_time: score.totalTime,
       section_times: score.sectionTimes.join(","),
@@ -113,6 +116,7 @@ export class SqlTimeAttackRepository implements TimeAttackRepository {
       const insertSql = sql.insert("idz_ta_best", {
         id: this._txn.generateId(),
         profile_id: profileId,
+        version: version,
         route_no: score.routeNo,
         total_time: score.totalTime,
         section_times: score.sectionTimes.join(","),

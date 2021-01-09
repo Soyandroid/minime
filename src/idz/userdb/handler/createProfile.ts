@@ -49,7 +49,7 @@ export async function createProfile(
     lastMileageReward: 0,
   };
 
-  const profileId = await w.profile().create(profile);
+  const profileId = await w.profile().create(profile, version);
 
   await w.chara().save(profileId, req.chara);
   await w.car().saveCar(profileId, req.car);

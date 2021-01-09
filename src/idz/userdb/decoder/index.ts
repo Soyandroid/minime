@@ -6,7 +6,7 @@ import { createTeam1, createTeam2 } from "./createTeam";
 import { createAutoTeam1, createAutoTeam2 } from "./createAutoTeam";
 import { discoverProfile1, discoverProfile2 } from "./discoverProfile";
 import { load2on2_v1, load2on2_v2, load2on2_v3 } from "./load2on2";
-import { loadConfig1, loadConfig2 } from "./loadConfig";
+import { loadConfig1, loadConfig2, loadConfig3, loadConfig4 } from "./loadConfig";
 import { loadEventInfo1, loadEventInfo2 } from "./loadEventInfo";
 import { loadGacha1, loadGacha2 } from "./loadGacha";
 import { loadGarage1, loadGarage2 } from "./loadGarage";
@@ -22,12 +22,14 @@ import { loadServerList } from "./loadServerList";
 import { loadStocker1, loadStocker2 } from "./loadStocker";
 import { loadTeam1, loadTeam2 } from "./loadTeam";
 import {
+
   loadTeamRanking1,
+  loadTeamRanking2,
   loadTeamRanking3,
   loadTeamRanking4,
 } from "./loadTeamRanking";
 import { loadTopTen1 } from "./loadTopTen1";
-import { loadTopTen2 } from "./loadTopTen2";
+import { loadTopTen2, loadTopTen3 } from "./loadTopTen2";
 import { lockGarage1, lockGarage2 } from "./lockGarage";
 import { lockProfile1, lockProfile2 } from "./lockProfile";
 import { saveExpedition1, saveExpedition2 } from "./saveExpedition";
@@ -38,7 +40,7 @@ import { saveProfile3 } from "./saveProfile3";
 import { saveSettings1, saveSettings2 } from "./saveSettings";
 import { saveStocker1, saveStocker2 } from "./saveStocker";
 import { saveTeamBanner1, saveTeamBanner2 } from "./saveTeamBanner";
-import { saveTimeAttack1, saveTimeAttack2 } from "./saveTimeAttack";
+import { saveTimeAttack1, saveTimeAttack2, saveTimeAttack3 } from "./saveTimeAttack";
 import { saveTopic1, saveTopic2 } from "./saveTopic";
 import { unknownA_1, unknownA_2 } from "./unknownA";
 import { unlockProfile1, unlockProfile2 } from "./unlockProfile";
@@ -134,18 +136,20 @@ const funcList130: ReaderFn[] = [
   discoverProfile1,
   load2on2_v2,
   updateStoryClearNum2,
+  updateStoryClearNum3,
   loadConfig1,
   loadConfig2,
   loadEventInfo1,
   loadGacha1,
   loadGarage1,
-  loadGeneralReward2,
+  loadGeneralReward3,
   loadGhost1,
   loadProfile3,
   loadRewardTable1,
   loadServerList,
   loadStocker1,
   loadTeam1,
+  loadTeamRanking1,
   loadTeamRanking3,
   loadTopTen2,
   lockGarage1,
@@ -177,10 +181,11 @@ const funcList210: ReaderFn[] = [
   createProfile2,
   createTeam2,
   discoverProfile2,
+  load2on2_v2,
   load2on2_v3,
   updateStoryClearNum3,
-  loadConfig1,
-  loadConfig2,
+  loadConfig3,
+  loadConfig4,
   loadEventInfo2,
   loadGacha2,
   loadGarage2,
@@ -191,8 +196,9 @@ const funcList210: ReaderFn[] = [
   loadServerList,
   loadStocker2,
   loadTeam2,
+  loadTeamRanking2,
   loadTeamRanking4,
-  loadTopTen2,
+  loadTopTen3,
   lockGarage2,
   lockProfile2,
   lockProfileExtend2,
@@ -203,7 +209,7 @@ const funcList210: ReaderFn[] = [
   saveSettings2,
   saveStocker2,
   saveTeamBanner2,
-  saveTimeAttack2,
+  saveTimeAttack3,
   saveTopic2,
   unknownA_2,
   unlockProfile2,

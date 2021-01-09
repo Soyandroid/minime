@@ -5,14 +5,23 @@ import { encodeChara1 } from "./_chara";
 
 function _team(
   res: CreateAutoTeamResponse | LoadTeamResponse,
-  msgCode: number
+  msgCode: number,
+  version: number,
 ) {
   const buf = Buffer.alloc(0x0ca0);
 
   if (res.type === "create_auto_team_res") {
-    buf.writeInt16LE(0x007c, 0x0000);
+    if(version == 1){
+      buf.writeInt16LE(0x007c, 0x0000);
+    } else if (version == 2){
+      buf.writeInt16LE(0x0078, 0x0000);
+    }
   } else {
-    buf.writeInt16LE(0x0078, 0x0000);
+    if(version == 1){
+      buf.writeInt16LE(0x0078, 0x0000);
+    } else if (version == 2){
+      buf.writeInt16LE(0x0074, 0x0000);
+    }
   }
 
   const leader = res.members.find(item => item.leader === true);
@@ -27,7 +36,15 @@ function _team(
   buf.writeUInt32LE(leader ? leader.profile.aimeId : 0, 0x0080);
 
   for (let i = 0; i < 6; i++) {
-    const base = 0x011c + i * 0x005c;
+    var base = 0x011c + i * 0x005c;
+    if(version == 1)
+    {
+      base = 0x011c + i * 0x005c;
+    } else
+    {
+      base = 0x0120 + i * 0x005c;
+    }
+
     const member = res.members[i];
 
     if (member === undefined) {
@@ -61,17 +78,17 @@ function _team(
 }
 
 export function createAutoTeam1(res: CreateAutoTeamResponse): Buffer {
-  return _team(res, 0x007c);
+  return _team(res, 0x007c, 1);
 }
 
 export function loadTeam1(res: LoadTeamResponse): Buffer {
-  return _team(res, 0x0078);
+  return _team(res, 0x0078, 1);
 }
 
 export function createAutoTeam2(res: CreateAutoTeamResponse): Buffer {
-  return _team(res, 0x0078);
+  return _team(res, 0x0078, 2);
 }
 
 export function loadTeam2(res: LoadTeamResponse): Buffer {
-  return _team(res, 0x0074);
+  return _team(res, 0x0074, 2);
 }

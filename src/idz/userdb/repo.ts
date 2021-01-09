@@ -60,7 +60,7 @@ export interface ProfileRepository {
 
   save(id: Id<Model.Profile>, profile: Model.Profile): Promise<void>;
 
-  create(profile: Model.Profile): Promise<Id<Model.Profile>>;
+  create(profile: Model.Profile, version: number): Promise<Id<Model.Profile>>;
 }
 
 export interface StampsRepository {
@@ -89,7 +89,7 @@ export interface TeamRepository {
 
   save(id: Id<Model.Team>, team: Model.Team): Promise<void>;
 
-  create(team: TeamSpec): Promise<[Id<Model.Team>, Model.ExtId<Model.Team>]>;
+  create(team: TeamSpec, version: number): Promise<[Id<Model.Team>, Model.ExtId<Model.Team>]>;
 
   delete(id: Id<Model.Team>): Promise<void>;
 }
@@ -97,7 +97,7 @@ export interface TeamRepository {
 export interface TeamAutoRepository {
   peek(version: number): Promise<[Model.TeamAuto, Id<Model.Team>] | undefined>;
 
-  push(teamId: Id<Model.Team>, auto: Model.TeamAuto): Promise<void>;
+  push(teamId: Id<Model.Team>, auto: Model.TeamAuto, version: number): Promise<void>;
 }
 
 export interface TeamMemberRepository {
@@ -145,13 +145,15 @@ export interface TimeAttackRepository {
   loadTop(
     routeNo: Model.RouteNo,
     minTimestamp: Date,
-    limit: number
+    limit: number,
+    version: number
   ): Promise<TopTenResult[]>;
 
   loadAll(profileId: Id<Model.Profile>): Promise<Model.TimeAttackScore[]>;
 
   save(
     profileId: Id<Model.Profile>,
+    version: number,
     score: Model.TimeAttackScore
   ): Promise<void>;
 }
