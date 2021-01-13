@@ -42,6 +42,7 @@ export const PORT_IDZ = {
   SCREENSHOT: 10009,
   ECHO1: 10010,
   ECHO2: 10011,
+  NEWS: 10012,
 };
 
 //

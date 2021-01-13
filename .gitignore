@@ -2,3 +2,4 @@ bin/
 data/
 node_modules/
 .env
+.vscode/settings.json

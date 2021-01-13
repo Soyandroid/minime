@@ -1,6 +1,7 @@
 {
   "editor.formatOnSave": true,
-  "editor.rulers": [79],
+  "editor.rulers": [
+  ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

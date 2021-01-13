@@ -19,6 +19,7 @@ import checkdb from "./checkdb";
 import chunithm from "./chunithm";
 import diva from "./diva";
 import idzPing from "./idz/ping";
+import idzNews from "./idz/news";
 import idzUserDb from "./idz/userdb";
 import { openSqlite } from "./sql";
 import * as Swb from "./switchboard";
@@ -55,6 +56,7 @@ import * as Swb from "./switchboard";
   idzPing(Swb.PORT_IDZ.MATCH.UDP_SEND, Swb.HOST_INT);
   idzPing(Swb.PORT_IDZ.ECHO1, Swb.HOST_INT);
   idzPing(Swb.PORT_IDZ.ECHO2, Swb.HOST_INT);
+  idzNews(Swb.PORT_IDZ.NEWS, Swb.HOST_EXT);
 
   console.log("Startup OK");
 })();
