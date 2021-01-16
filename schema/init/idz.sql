@@ -19,6 +19,7 @@ create table "idz_profile"
     "fame" integer not null,
     "dpoint" integer not null,
     "mileage" integer not null,
+    "playstamps" integer not null,
     "register_time" timestamp not null,
     "access_time" timestamp not null,
     constraint "idz_profile_player_uq" unique ("player_id", "version")

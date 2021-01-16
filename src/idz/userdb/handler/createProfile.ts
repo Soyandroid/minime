@@ -23,6 +23,7 @@ export async function createProfile(
     fame: 0,
     dpoint: 0,
     mileage: 0,
+    playstamps: 0,
     accessTime: now,
     registerTime: now,
   };

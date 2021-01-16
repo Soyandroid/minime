@@ -66,6 +66,7 @@ export function saveProfile4(buf: Buffer): SaveProfileRequest {
     fame: buf.readUInt32LE(0x0784),
     dpoint: buf.readUInt32LE(0x0780),
     mileage: buf.readUInt32LE(0x0008),
+    playstamps: buf.readUInt32LE(0x0030),
     tutorials: {
       chapter01: buf.readUInt16LE(0x0d7c),
       chapter02: buf.readUInt16LE(0x0d80),

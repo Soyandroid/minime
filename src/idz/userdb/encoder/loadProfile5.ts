@@ -16,6 +16,7 @@ export function loadProfile5(res: LoadProfileResponse) {
   buf.writeUInt32LE(res.aimeId, 0x9b8);
   buf.writeUInt32LE(res.teamId || 0xffffffff, 0xf3c);
   buf.writeUInt32LE(res.mileage, 0x9bc);
+  buf.writeUInt32LE(res.playstamps, 0x9c4); //PLAYSTAMPS
   encodeMission(res.missions.solo).copy(buf, 0xd7c);
   encodeChara2(res.chara).copy(buf, 0xda4);
   encodeBitmap(res.titles, 0x177).copy(buf, 0xdba);

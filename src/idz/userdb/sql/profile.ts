@@ -15,6 +15,7 @@ export function _extractProfile(row: Row): Profile {
     fame: parseInt(row.fame!),
     dpoint: parseInt(row.dpoint!),
     mileage: parseInt(row.mileage!),
+    playstamps: parseInt(row.playstamps!),
     accessTime: new Date(row.access_time!),
     registerTime: new Date(row.register_time!),
   };
@@ -77,6 +78,7 @@ export class SqlProfileRepository implements ProfileRepository {
         fame: profile.fame,
         dpoint: profile.dpoint,
         mileage: profile.mileage,
+        playstamps: profile.playstamps,
         access_time: profile.accessTime.toISOString(),
       })
       .where("id", id);
@@ -109,6 +111,7 @@ export class SqlProfileRepository implements ProfileRepository {
       fame: profile.fame,
       dpoint: profile.dpoint,
       mileage: profile.mileage,
+      playstamps: profile.playstamps,
       register_time: profile.registerTime.toISOString(),
       access_time: profile.accessTime.toISOString(),
     });

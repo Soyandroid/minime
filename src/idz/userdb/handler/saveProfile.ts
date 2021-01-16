@@ -18,6 +18,7 @@ export async function saveProfile(
     fame: req.fame,
     dpoint: req.dpoint,
     mileage: req.mileage,
+    playstamps: req.playstamps,
     accessTime: now,
   });
 

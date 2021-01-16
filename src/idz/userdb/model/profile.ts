@@ -9,6 +9,7 @@ export interface Profile {
   fame: number;
   dpoint: number;
   mileage: number;
+  playstamps: number;
   accessTime: Date;
   registerTime: Date;
 }

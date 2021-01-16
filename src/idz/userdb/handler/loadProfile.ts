@@ -43,6 +43,7 @@ export async function loadProfile(
     fame: profile.fame,
     dpoint: profile.dpoint,
     mileage: profile.mileage,
+    playstamps: profile.playstamps,
     tutorials,
     teamId: team && team.extId,
     teamLeader: profileId === leaderId,

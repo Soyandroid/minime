@@ -10,6 +10,7 @@ export function loadConfig1(res: LoadConfigResponse1) {
   buf.writeInt16LE(0x0005, 0x0000);
   buf.writeInt8(res.status, 0x0002);
   buf.writeUInt16LE(res.serverVersion, 0x0016);
+  buf.writeInt8(0x7, 0x0007); // Game Revision
 
   return buf;
 }
@@ -29,6 +30,9 @@ export function loadConfig3(res: LoadConfigResponse3) {
   buf.writeInt16LE(0x0005, 0x0000);
   buf.writeInt8(res.status, 0x0002);
   buf.writeUInt16LE(210, 0x0016);
+  buf.writeInt8(0x2, 0x0007); // Game Revision
+  buf.writeInt8(0x1, 0x0014); // playstamps enable
+  buf.writeUInt16LE(0x01, 0x0018); // playstamps amount
 
   return buf;
 }
@@ -48,6 +52,10 @@ export function loadConfig5(res: LoadConfigResponse3) {
   buf.writeInt16LE(0x0005, 0x0000);
   buf.writeInt8(res.status, 0x0002);
   buf.writeUInt16LE(230, 0x0016);
+
+  buf.writeInt8(0x6, 0x0007); // Game Revision
+  buf.writeInt8(0x1, 0x0014); // playstamps enable
+  buf.writeUInt16LE(0x01, 0x0018); // playstamps amount
 
   return buf;
 }

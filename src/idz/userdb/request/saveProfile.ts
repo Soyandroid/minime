@@ -20,6 +20,7 @@ export interface SaveProfileRequest {
   fame: number;
   dpoint: number;
   mileage: number;
+  playstamps: number;
   tutorials?: Tutorials;
   title: TitleCode;
   titles: Set<TitleCode>;

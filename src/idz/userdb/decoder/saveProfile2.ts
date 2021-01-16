@@ -54,6 +54,7 @@ export function saveProfile2(buf: Buffer): SaveProfileRequest {
     fame: buf.readUInt32LE(0x0468),
     dpoint: buf.readUInt32LE(0x0464),
     mileage: buf.readUInt32LE(0x0008),
+    playstamps: 0,
     title: buf.readUInt16LE(0x0040) as TitleCode,
     titles: bitmap(buf.slice(0x0042, 0x00f6)),
     background: buf.readUInt8(0x0750) as BackgroundCode,

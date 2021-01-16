@@ -21,6 +21,7 @@ export interface LoadProfileResponse {
   fame: number;
   dpoint: number;
   mileage: number;
+  playstamps: number;
   tutorials: Tutorials;
   teamId?: number;
   teamLeader: boolean;

@@ -57,6 +57,5 @@ export function loadServerList2(res: LoadServerListResponse) {
   buf.write(res.newsUrl, 0x03a2);
   buf.write(res.reportErrorUrl, 0x0426);
 
-
   return buf;
 }
