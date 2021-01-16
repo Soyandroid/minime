@@ -22,3 +22,14 @@ export function loadStocker2(buf: Buffer): LoadStockerRequest {
     version: 2,
   };
 }
+
+loadStocker3.msgCode = 0x009c;
+loadStocker3.msgLen = 0x0010;
+
+export function loadStocker3(buf: Buffer): LoadStockerRequest {
+  return {
+    type: "load_stocker_req",
+    aimeId: buf.readUInt32LE(0x0004) as AimeId,
+    version: 3,
+  };
+}

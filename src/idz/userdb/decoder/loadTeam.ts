@@ -29,3 +29,17 @@ export function loadTeam2(buf: Buffer): LoadTeamRequest {
     teamExtId: extId !== 0xffffffff ? (extId as ExtId<Team>) : undefined,
   };
 }
+
+loadTeam3.msgCode = 0x0073;
+loadTeam3.msgLen = 0x0010;
+
+export function loadTeam3(buf: Buffer): LoadTeamRequest {
+  const extId = buf.readUInt32LE(0x0008);
+
+  return {
+    type: "load_team_req",
+    aimeId: buf.readUInt32LE(0x0004),
+    version: 3,
+    teamExtId: extId !== 0xffffffff ? (extId as ExtId<Team>) : undefined,
+  };
+}

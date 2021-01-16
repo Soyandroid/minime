@@ -6,7 +6,7 @@ import "dotenv/config";
 // Do not allow this to be overridden by .env either.
 
 process.env.TZ = "UTC";
-
+import "source-map-support/register";
 import fs from "fs";
 import https from "https";
 import http from "http";

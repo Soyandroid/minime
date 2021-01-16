@@ -18,7 +18,7 @@ export function loadProfile4(res: LoadProfileResponse) {
   buf.writeUInt32LE(res.mileage, 0x06e0);
   encodeMission(res.missions.solo).copy(buf, 0x0aa0);
   encodeChara2(res.chara).copy(buf, 0x0ac8);
-  encodeBitmap(res.titles, 0xb4).copy(buf, 0x0ade);
+  encodeBitmap(res.titles, 0x177).copy(buf, 0x0ade);
   buf.writeUInt32LE(res.settings.pack, 0x06fc);
   buf.writeUInt8(res.settings.aura, 0x0c57);
   buf.writeUInt8(res.settings.paperCup, 0x0c5a);
@@ -51,6 +51,12 @@ export function loadProfile4(res: LoadProfileResponse) {
   // because we don't keep track of the "new!" state.
   encodeBitmap(res.stamps, 0x26).copy(buf, 0x10f8);
   encodeBitmap(res.stamps, 0x26).copy(buf, 0x111e);
+
+  // Tutorials
+  const tutorials = res.tutorials;
+  buf.writeUInt16LE(tutorials.chapter01, 0x114c);
+  buf.writeUInt16LE(tutorials.chapter02, 0x1150);
+  buf.writeUInt16LE(tutorials.chapter02, 0x1154);
 
   // Selected Stamps
   const selectedStamps = res.selectedStamps;
@@ -110,6 +116,13 @@ export function loadProfile4(res: LoadProfileResponse) {
   for (let i = 0; i < 6; i++) {
     const row = res.story.rows.get(i);
     const rowOffset = 0x0258 + i * 0x7a;
+
+    let lap = 0;
+    if (res.storyLaps[i] !== undefined) {
+      lap = res.storyLaps[i].lap;
+    }
+
+    buf.writeUInt8(lap, rowOffset - 0x1);
 
     if (row === undefined) {
       continue;

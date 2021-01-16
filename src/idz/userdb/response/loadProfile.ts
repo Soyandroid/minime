@@ -4,9 +4,10 @@ import { Chara } from "../model/chara";
 import { MissionState } from "../model/mission";
 import { Settings } from "../model/settings";
 import { SelectedStamps } from "../model/stamps";
-import { Story } from "../model/story";
+import { Story, StoryLaps } from "../model/story";
 import { Tickets } from "../model/tickets";
 import { TimeAttackScore } from "../model/timeAttack";
+import { Tutorials } from "../model/tutorials";
 import { Unlocks } from "../model/unlocks";
 import { WeeklyMissions } from "../model/weeklyMissions";
 import { AimeId } from "../../../model";
@@ -20,6 +21,7 @@ export interface LoadProfileResponse {
   fame: number;
   dpoint: number;
   mileage: number;
+  tutorials: Tutorials;
   teamId?: number;
   teamLeader: boolean;
   settings: Settings;
@@ -31,6 +33,7 @@ export interface LoadProfileResponse {
   car: Car;
   carCount: number;
   story: Story;
+  storyLaps: StoryLaps[];
   unlocks: Unlocks;
   tickets: Tickets;
   stamps: Set<StampCode>;

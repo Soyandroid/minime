@@ -24,10 +24,12 @@ export async function loadProfile(
   const car = await w.car().loadSelectedCar(profileId);
   const carCount = await w.car().countCars(profileId);
   const story = await w.story().load(profileId);
+  const storyLaps = await w.storyLaps().load(profileId);
   const timeAttack = await w.timeAttack().loadAll(profileId);
   const unlocks = await w.unlocks().load(profileId);
   const tickets = await w.tickets().load(profileId);
   const team = teamId && (await w.teams().load(teamId));
+  const tutorials = await w.tutorials().loadAll(profileId);
   const stamps = await w.stamps().loadAll(profileId);
   const selectedStamps = await w.stamps().loadSelection(profileId);
   const weeklyMissions = await w.weeklyMissions().load(profileId);
@@ -41,6 +43,7 @@ export async function loadProfile(
     fame: profile.fame,
     dpoint: profile.dpoint,
     mileage: profile.mileage,
+    tutorials,
     teamId: team && team.extId,
     teamLeader: profileId === leaderId,
     settings,
@@ -52,6 +55,7 @@ export async function loadProfile(
     car,
     carCount,
     story,
+    storyLaps,
     unlocks,
     tickets,
     stamps,

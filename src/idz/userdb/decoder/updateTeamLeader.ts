@@ -29,3 +29,16 @@ export function updateTeamLeader2(buf: Buffer): UpdateTeamLeaderRequest {
     field_000C: readAsciiStr(buf, 0x000c, 0x0020),
   };
 }
+
+updateTeamLeader3.msgCode = 0x0083;
+updateTeamLeader3.msgLen = 0x0020;
+
+export function updateTeamLeader3(buf: Buffer): UpdateTeamLeaderRequest {
+  return {
+    type: "update_team_leader_req",
+    aimeId: buf.readUInt32LE(0x0004) as AimeId,
+    version: 3,
+    teamExtId: buf.readUInt32LE(0x0008) as ExtId<Team>,
+    field_000C: readAsciiStr(buf, 0x000c, 0x0020),
+  };
+}

@@ -79,6 +79,21 @@ export interface StampsRepository {
   ): Promise<void>;
 }
 
+export interface StoryLapsRepository {
+  load(profileId: Id<Model.Profile>): Promise<Model.StoryLaps[]>;
+
+  save(profileId: Id<Model.Profile>, laps: Model.StoryLaps[]): Promise<void>;
+}
+
+export interface TutorialsRepository {
+  loadAll(profileId: Id<Model.Profile>): Promise<Model.Tutorials>;
+
+  saveAll(
+    profileId: Id<Model.Profile>,
+    tutorials: Model.Tutorials
+  ): Promise<void>;
+}
+
 export interface TeamRepository {
   find(
     extId: Model.ExtId<Model.Team>,
@@ -89,7 +104,10 @@ export interface TeamRepository {
 
   save(id: Id<Model.Team>, team: Model.Team): Promise<void>;
 
-  create(team: TeamSpec, version: number): Promise<[Id<Model.Team>, Model.ExtId<Model.Team>]>;
+  create(
+    team: TeamSpec,
+    version: number
+  ): Promise<[Id<Model.Team>, Model.ExtId<Model.Team>]>;
 
   delete(id: Id<Model.Team>): Promise<void>;
 }
@@ -97,7 +115,11 @@ export interface TeamRepository {
 export interface TeamAutoRepository {
   peek(version: number): Promise<[Model.TeamAuto, Id<Model.Team>] | undefined>;
 
-  push(teamId: Id<Model.Team>, auto: Model.TeamAuto, version: number): Promise<void>;
+  push(
+    teamId: Id<Model.Team>,
+    auto: Model.TeamAuto,
+    version: number
+  ): Promise<void>;
 }
 
 export interface TeamMemberRepository {
@@ -190,6 +212,8 @@ export interface Repositories {
   // Also not a facet. w/e one step at a time.
   story(): FacetRepository<Model.Story>;
 
+  storyLaps(): StoryLapsRepository;
+
   teams(): TeamRepository;
 
   teamAuto(): TeamAutoRepository;
@@ -203,6 +227,8 @@ export interface Repositories {
   timeAttack(): TimeAttackRepository;
 
   titles(): FlagRepository<Model.TitleCode>;
+
+  tutorials(): TutorialsRepository;
 
   unlocks(): FacetRepository<Model.Unlocks>;
 

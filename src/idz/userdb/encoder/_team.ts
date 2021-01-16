@@ -6,20 +6,20 @@ import { encodeChara1 } from "./_chara";
 function _team(
   res: CreateAutoTeamResponse | LoadTeamResponse,
   msgCode: number,
-  version: number,
+  version: number
 ) {
   const buf = Buffer.alloc(0x0ca0);
 
   if (res.type === "create_auto_team_res") {
-    if(version == 1){
+    if (version == 1) {
       buf.writeInt16LE(0x007c, 0x0000);
-    } else if (version == 2){
+    } else {
       buf.writeInt16LE(0x0078, 0x0000);
     }
   } else {
-    if(version == 1){
+    if (version == 1) {
       buf.writeInt16LE(0x0078, 0x0000);
-    } else if (version == 2){
+    } else {
       buf.writeInt16LE(0x0074, 0x0000);
     }
   }
@@ -37,11 +37,9 @@ function _team(
 
   for (let i = 0; i < 6; i++) {
     var base = 0x011c + i * 0x005c;
-    if(version == 1)
-    {
+    if (version == 1) {
       base = 0x011c + i * 0x005c;
-    } else
-    {
+    } else {
       base = 0x0120 + i * 0x005c;
     }
 
@@ -55,7 +53,7 @@ function _team(
     const accessTime = (profile.accessTime.getTime() / 1000) | 0;
 
     buf.writeInt32LE(profile.aimeId, base + 0x0000);
-    writeSjisStr(buf, 0x0004, 0x0018, profile.name);
+    writeSjisStr(buf, base + 0x0004, base + 0x0018, profile.name);
     buf.writeInt32LE(profile.lv, base + 0x0018);
     buf.writeInt32LE(0, base + 0x0024); // Month points, TODO
     buf.writeUInt32LE(accessTime, base + 0x0034);
@@ -91,4 +89,12 @@ export function createAutoTeam2(res: CreateAutoTeamResponse): Buffer {
 
 export function loadTeam2(res: LoadTeamResponse): Buffer {
   return _team(res, 0x0074, 2);
+}
+
+export function createAutoTeam3(res: CreateAutoTeamResponse): Buffer {
+  return _team(res, 0x0078, 3);
+}
+
+export function loadTeam3(res: LoadTeamResponse): Buffer {
+  return _team(res, 0x0074, 3);
 }

@@ -1,4 +1,8 @@
-import { LoadConfigResponse1, LoadConfigResponse2, LoadConfigResponse3} from "../response/loadConfig";
+import {
+  LoadConfigResponse1,
+  LoadConfigResponse2,
+  LoadConfigResponse3,
+} from "../response/loadConfig";
 
 export function loadConfig1(res: LoadConfigResponse1) {
   const buf = Buffer.alloc(0x01a0);
@@ -38,3 +42,12 @@ export function loadConfig4(res: LoadConfigResponse2) {
   return buf;
 }
 
+export function loadConfig5(res: LoadConfigResponse3) {
+  const buf = Buffer.alloc(0x05e0);
+
+  buf.writeInt16LE(0x0005, 0x0000);
+  buf.writeInt8(res.status, 0x0002);
+  buf.writeUInt16LE(230, 0x0016);
+
+  return buf;
+}

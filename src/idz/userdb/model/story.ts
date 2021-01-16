@@ -13,3 +13,8 @@ export interface Story {
   y: number;
   rows: Map<number, StoryRow>;
 }
+
+export interface StoryLaps {
+  chapter: number;
+  lap: number;
+}

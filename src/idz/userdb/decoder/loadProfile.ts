@@ -37,3 +37,15 @@ export function loadProfile4(buf: Buffer): LoadProfileRequest {
     luid: readAsciiStr(buf, 0x0008, 0x0020),
   };
 }
+
+loadProfile5.msgCode = 0x0142;
+loadProfile5.msgLen = 0x0020;
+
+export function loadProfile5(buf: Buffer): LoadProfileRequest {
+  return {
+    type: "load_profile_req",
+    aimeId: buf.readUInt32LE(0x0004) as AimeId,
+    version: 3,
+    luid: readAsciiStr(buf, 0x0008, 0x0020),
+  };
+}

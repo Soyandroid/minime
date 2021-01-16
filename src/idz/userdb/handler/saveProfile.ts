@@ -40,8 +40,16 @@ export async function saveProfile(
     await w.stamps().saveSelection(profileId, req.selectedStamps);
   }
 
+  if (req.tutorials) {
+    await w.tutorials().saveAll(profileId, req.tutorials);
+  }
+
   if (req.stamps) {
     await w.stamps().saveAll(profileId, req.stamps);
+  }
+
+  if (req.storyLaps) {
+    await w.storyLaps().save(profileId, req.storyLaps);
   }
 
   if (req.weeklyMissions) {

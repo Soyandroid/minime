@@ -8,6 +8,7 @@ import { SqlProfileRepository } from "./profile";
 import { SqlSettingsRepository } from "./settings";
 import { SqlStampsRepository } from "./stamps";
 import { SqlStoryRepository } from "./story";
+import { SqlStoryLapsRepository } from "./storyLaps";
 import { SqlTeamRepository } from "./team";
 import { SqlTeamAutoRepository } from "./teamAuto";
 import { SqlTeamMemberRepository } from "./teamMember";
@@ -15,6 +16,7 @@ import { SqlTeamReservationRepository } from "./teamReservation";
 import { SqlTicketsRepository } from "./tickets";
 import { SqlTimeAttackRepository } from "./timeAttack";
 import { SqlTitlesRepository } from "./titles";
+import { SqlTutorialsRepository } from "./tutorials";
 import { SqlUnlocksRepository } from "./unlocks";
 import { SqlWeeklyMissionsRepository } from "./weeklyMissions";
 import * as Model from "../model";
@@ -64,6 +66,10 @@ export class SqlRepositories implements Repo.Repositories {
     return new SqlStoryRepository(this._txn);
   }
 
+  storyLaps(): Repo.StoryLapsRepository {
+    return new SqlStoryLapsRepository(this._txn);
+  }
+
   teams(): Repo.TeamRepository {
     return new SqlTeamRepository(this._txn);
   }
@@ -90,6 +96,10 @@ export class SqlRepositories implements Repo.Repositories {
 
   titles(): Repo.FlagRepository<Model.TitleCode> {
     return new SqlTitlesRepository(this._txn);
+  }
+
+  tutorials(): Repo.TutorialsRepository {
+    return new SqlTutorialsRepository(this._txn);
   }
 
   unlocks(): Repo.FacetRepository<Model.Unlocks> {

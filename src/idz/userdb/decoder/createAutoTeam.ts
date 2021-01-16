@@ -26,3 +26,16 @@ export function createAutoTeam2(buf: Buffer): CreateAutoTeamRequest {
     field_000C: buf.readUInt8(0x000c),
   };
 }
+
+createAutoTeam3.msgCode = 0x0077;
+createAutoTeam3.msgLen = 0x0010;
+
+export function createAutoTeam3(buf: Buffer): CreateAutoTeamRequest {
+  return {
+    type: "create_auto_team_req",
+    aimeId: buf.readUInt32LE(0x0004) as AimeId,
+    version: 3,
+    field_0008: buf.readUInt32LE(0x0008),
+    field_000C: buf.readUInt8(0x000c),
+  };
+}

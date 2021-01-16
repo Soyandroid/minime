@@ -164,6 +164,17 @@ create table "idz_story_cell_state"
     )
 );
 
+create table "idz_story_laps"
+(
+    "id" integer primary key not null,
+    "profile_id" integer not null
+        references "idz_profile"("id")
+            on delete cascade,
+    "chapter" integer not null,
+    "lap" integer not null,
+    constraint "idz_story_laps_uq" unique ("profile_id", "chapter")
+);
+
 create table "idz_free_car"
 (
     "id" integer primary key not null
@@ -291,6 +302,16 @@ create table "idz_team_reservation"
             on delete cascade,
     "join_time" timestamp not null,
     "leader" boolean not null
+);
+
+create table "idz_tutorials"
+(
+    "id" integer primary key not null
+        references "idz_profile"("id")
+            on delete cascade,
+    "chapter01" integer not null,
+    "chapter02" integer not null,
+    "chapter03" integer not null
 );
 
 create table "idz_weekly_missions"

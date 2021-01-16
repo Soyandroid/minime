@@ -1,10 +1,11 @@
 import sql from "sql-bricks-postgres";
 
 import { Profile } from "../model/profile";
-import { Story, StoryRow, StoryCell } from "../model/story";
+import { Story, StoryRow, StoryCell, StoryLaps } from "../model/story";
 import { FacetRepository } from "../repo";
 import { Id } from "../../../model";
-import { Transaction } from "../../../sql";
+import { Row, Transaction } from "../../../sql";
+import { profile } from "console";
 
 function cellChanged(
   lhs: StoryCell | undefined,

@@ -29,3 +29,13 @@ export function updateStoryClearNum3(
 
   return buf;
 }
+
+export function updateStoryClearNum4(
+  res: UpdateStoryClearNumResponse
+): Buffer {
+  const buf = Buffer.alloc(0x800);
+
+  buf.writeInt16LE(0x0145, 0x0000);
+
+  return buf;
+}

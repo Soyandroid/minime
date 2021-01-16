@@ -22,3 +22,14 @@ export function discoverProfile2(buf: Buffer): DiscoverProfileRequest {
     version: 2,
   };
 }
+
+discoverProfile3.msgCode = 0x0067;
+discoverProfile3.msgLen = 0x0010;
+
+export function discoverProfile3(buf: Buffer): DiscoverProfileRequest {
+  return {
+    type: "discover_profile_req",
+    aimeId: buf.readUInt32LE(0x0004) as AimeId,
+    version: 3,
+  };
+}

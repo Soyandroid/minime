@@ -27,3 +27,16 @@ export function saveTeamBanner2(buf: Buffer): SaveTeamBannerRequest {
     nameFx: buf.readUInt32LE(0x000c),
   };
 }
+
+saveTeamBanner3.msgCode = 0x0082;
+saveTeamBanner3.msgLen = 0x0010;
+
+export function saveTeamBanner3(buf: Buffer): SaveTeamBannerRequest {
+  return {
+    type: "save_team_banner_req",
+    teamExtId: buf.readUInt32LE(0x0004) as ExtId<Team>,
+    version: 3,
+    nameBg: buf.readUInt32LE(0x0008),
+    nameFx: buf.readUInt32LE(0x000c),
+  };
+}

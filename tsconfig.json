@@ -6,6 +6,7 @@
     "moduleResolution": "node",
     "outDir": "./bin/",
     "strictNullChecks": true,
+    "sourceMap":true,
     "target": "esnext",
     "typeRoots": ["./node_modules/@types", "./types"]
   },

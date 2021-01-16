@@ -30,3 +30,17 @@ export function saveNewCar2(buf: Buffer): SaveNewCarRequest {
     field_0080: buf.readUInt32LE(0x0080),
   };
 }
+
+saveNewCar3.msgCode = 0x0075;
+saveNewCar3.msgLen = 0x0090;
+
+export function saveNewCar3(buf: Buffer): SaveNewCarRequest {
+  return {
+    type: "save_new_car_req",
+    aimeId: buf.readUInt32LE(0x0004) as AimeId,
+    version: 3,
+    luid: readAsciiStr(buf, 0x0008, 0x001e),
+    car: car(buf.slice(0x0020, 0x0080)),
+    field_0080: buf.readUInt32LE(0x0080),
+  };
+}
