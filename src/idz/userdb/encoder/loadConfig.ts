@@ -32,7 +32,7 @@ export function loadConfig3(res: LoadConfigResponse3) {
   buf.writeUInt16LE(210, 0x0016);
   buf.writeInt8(0x2, 0x0007); // Game Revision
   buf.writeInt8(0x1, 0x0014); // playstamps enable
-  buf.writeUInt16LE(0x01, 0x0018); // playstamps amount
+  buf.writeUInt16LE(0x11, 0x001a); // playstamps amount
 
   return buf;
 }
@@ -55,7 +55,7 @@ export function loadConfig5(res: LoadConfigResponse3) {
 
   buf.writeInt8(0x6, 0x0007); // Game Revision
   buf.writeInt8(0x1, 0x0014); // playstamps enable
-  buf.writeUInt16LE(0x01, 0x0018); // playstamps amount
+  buf.writeUInt16LE(0x11, 0x001a); // playstamps amount
 
   return buf;
 }
