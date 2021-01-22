@@ -66,11 +66,7 @@ export function loadProfile5(res: LoadProfileResponse) {
   buf.writeUInt16LE(selectedStamps.stamp03, 0x1424);
   buf.writeUInt16LE(selectedStamps.stamp04, 0x1426);
 
-  // EX TICKETS TEST
-  // buf.writeUInt32BE(0xc0fffd5f, 0x1444); EX TICKET DATE
-  // buf.writeUInt8(0x05, 0x1448); EX TICKET AMOUNT
-
-  const { freeCar, freeContinue } = res.tickets;
+  const { freeCar, freeContinue, freeExPart } = res.tickets;
 
   if (freeCar) {
     buf.writeUInt32LE((freeCar.validFrom.getTime() / 1000) | 0, 0x0214);
@@ -79,6 +75,11 @@ export function loadProfile5(res: LoadProfileResponse) {
   if (freeContinue) {
     buf.writeUInt32LE((freeContinue.validFrom.getTime() / 1000) | 0, 0x9dc);
     buf.writeUInt32LE((freeContinue.validTo.getTime() / 1000) | 0, 0x9e0);
+  }
+
+  if (freeExPart) {
+    buf.writeUInt32LE((freeExPart.validFrom.getTime() / 1000) | 0, 0x1444);
+    buf.writeUInt8(freeExPart.ticketAmount, 0x1448);
   }
 
   // Course plays

@@ -53,6 +53,11 @@ export function saveProfile5(buf: Buffer): SaveProfileRequest {
     validTo: buf.readUInt32LE(0x003c),
   };
 
+  const freeExPart = {
+    validFrom: buf.readUInt32LE(0x1070),
+    ticketAmount: buf.readUInt8(0x1074),
+  };
+
   const weeklyReset = {
     endDate: buf.readUInt32LE(0x0f68),
   };
@@ -106,6 +111,13 @@ export function saveProfile5(buf: Buffer): SaveProfileRequest {
           ? {
               validFrom: new Date(freeContinue.validFrom * 1000),
               validTo: new Date(freeContinue.validTo * 1000),
+            }
+          : undefined,
+      freeExPart:
+        freeExPart.validFrom !== 0 && freeExPart.ticketAmount !== 0
+          ? {
+              validFrom: new Date(freeExPart.validFrom * 1000),
+              ticketAmount: freeExPart.ticketAmount,
             }
           : undefined,
     },
