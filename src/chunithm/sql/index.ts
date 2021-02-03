@@ -2,7 +2,8 @@ import logger from "debug";
 import { NextFunction, Router, Request, Response } from "express";
 
 import { SqlRepositories } from "./_factory";
-import { RpcHandler, RpcWrapper } from "../rpc";
+import { Repositories } from "../repo";
+import { RpcHandler, RpcVersionedHandler, RpcWrapper } from "../rpc";
 import { DataSource } from "../../sql";
 
 const debug = logger("app:chuni:handler");
@@ -10,7 +11,7 @@ const debug = logger("app:chuni:handler");
 export default function createSqlWrapper(db: DataSource): RpcWrapper {
   // We return a piece of middleware that delegates to an Express router
 
-  const router = Router();
+  const router = Router({ mergeParams: true });
 
   // The ES6 class syntax is nice, but it lacks an `operator()` syntax, so we
   // have to do this the confusing and messy way. Declare an inner function and
@@ -22,6 +23,12 @@ export default function createSqlWrapper(db: DataSource): RpcWrapper {
   }
 
   self.rpc = function<Q, R>(path: string, handler: RpcHandler<Q, R>) {
+    return self.rpcVersioned(path, function(repo: Repositories, version: string, req: Q) {
+      return handler(repo, req);
+    });
+  }
+
+  self.rpcVersioned = function<Q, R>(path: string, handler: RpcVersionedHandler<Q, R>) {
     // Declare the RPC as a POST endpoint on the Express router as follows:
     router.post(path, async function(req, res) {
       // When you receive an HTTP request on this path...
@@ -30,7 +37,7 @@ export default function createSqlWrapper(db: DataSource): RpcWrapper {
         res.json(
           // ... the provided handler, executing within an SQL transaction.
           await db.transaction(txn =>
-            handler(new SqlRepositories(txn), req.body)
+            handler(new SqlRepositories(txn), req.params.version, req.body)
           )
         );
       } catch (e) {
