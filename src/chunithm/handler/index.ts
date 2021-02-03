@@ -87,7 +87,7 @@ export default function chunithm(db: DataSource) {
   wrapper.rpc("/GameLoginApi", gameLogin);
   wrapper.rpc("/GameLogoutApi", gameLogout);
   wrapper.rpc("/GetGameChargeApi", getGameCharge);
-  wrapper.rpc("/GetGameEventApi", getGameEvent);
+  wrapper.rpcVersioned("/GetGameEventApi", getGameEvent);
   wrapper.rpc("/GetGameIdlistApi", getGameIdlist);
   wrapper.rpc("/GetGameMessageApi", getGameMessage);
   wrapper.rpc("/GetGameRankingApi", getGameRanking);
