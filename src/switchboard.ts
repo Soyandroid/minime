@@ -54,7 +54,7 @@ startupHosts.set("SDDF", `${HOST_EXT}:${PORT_IDZ.USERDB.TCP}`);
 
 const startupUris = new Map<string, string>();
 
-startupUris.set("SDBT", `http://${HOST_EXT}:${PORT_CHUNITHM}/`);
+startupUris.set("SDBT", `http://${HOST_EXT}:${PORT_CHUNITHM}/{VERSION}/`);
 startupUris.set("SBZV", `http://${HOST_EXT}:${PORT_DIVA}/`);
 
 export function startupHost(model: string): string {
@@ -63,10 +63,11 @@ export function startupHost(model: string): string {
   return val !== undefined ? val : "";
 }
 
-export function startupUri(model: string): string {
+export function startupUri(model: string, version?: string): string {
   const val = startupUris.get(model);
+  const uri = val !== undefined ? val : "";
 
-  return val !== undefined ? val : "";
+  return uri.replace(/{VERSION}/, version !== undefined ? version : "");
 }
 
 //
