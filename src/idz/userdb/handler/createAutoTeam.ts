@@ -109,7 +109,7 @@ export async function createAutoTeam(
 
   const [newTeamId, newTeamExtId] = await w.teams().create(spec);
 
-  await w.teamAuto().push(newTeamId, nextAuto);
+  await w.teamAuto().push(newTeamId, nextAuto, version);
   await w.teamReservations().reserveHack(newTeamId, aimeId, now, "leader");
 
   return {

@@ -97,7 +97,11 @@ export interface TeamRepository {
 export interface TeamAutoRepository {
   peek(version: number): Promise<[Model.TeamAuto, Id<Model.Team>] | undefined>;
 
-  push(teamId: Id<Model.Team>, auto: Model.TeamAuto): Promise<void>;
+  push(
+    teamId: Id<Model.Team>,
+    auto: Model.TeamAuto,
+    version: number
+  ): Promise<void>;
 }
 
 export interface TeamMemberRepository {
