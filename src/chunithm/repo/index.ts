@@ -20,8 +20,6 @@ export interface Repositories {
 
   userCharacter(): UserCharacterRepository;
 
-  userCourse(): UserCourseRepository;
-
   userData(): UserDataRepository;
 
   userDataEx(): UserDataExRepository;
