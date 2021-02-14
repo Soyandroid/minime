@@ -1,3 +1,4 @@
+import { SqlGameRankingRepository } from "./gameRanking";
 import { SqlUserActivityRepository } from "./userActivity";
 import { SqlUserCharacterRepository } from "./userCharacter";
 import { SqlUserChargeRepository } from "./userCharge";
@@ -13,6 +14,7 @@ import { SqlUserMusicRepository } from "./userMusic";
 import { SqlUserPlaylogRepository } from "./userPlaylog";
 import { SqlUserRecentRatingRepository } from "./userRecentRating";
 import { Repositories } from "../repo";
+import { GameRankingRepository } from "../repo/gameRanking";
 import { UserActivityRepository } from "../repo/userActivity";
 import { UserCharacterRepository } from "../repo/userCharacter";
 import { UserChargeRepository } from "../repo/userCharge";
@@ -31,6 +33,10 @@ import { Transaction } from "../../sql";
 
 export class SqlRepositories implements Repositories {
   constructor(private readonly _txn: Transaction) {}
+
+  gameRanking(): GameRankingRepository {
+    return new SqlGameRankingRepository(this._txn);
+  }
 
   userActivity(): UserActivityRepository {
     return new SqlUserActivityRepository(this._txn);

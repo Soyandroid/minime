@@ -1,5 +1,6 @@
 export { Page } from "./_defs";
 
+import { GameRankingRepository } from "./gameRanking";
 import { UserActivityRepository } from "./userActivity";
 import { UserCharacterRepository } from "./userCharacter";
 import { UserCourseRepository } from "./userCourse";
@@ -16,6 +17,8 @@ import { UserChargeRepository } from "./userCharge";
 import { UserRecentRatingRepository } from "./userRecentRating";
 
 export interface Repositories {
+  gameRanking(): GameRankingRepository;
+
   userActivity(): UserActivityRepository;
 
   userCharacter(): UserCharacterRepository;

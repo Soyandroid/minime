@@ -1,4 +1,4 @@
 export interface GameRankingItem {
-  id: bigint;
-  point: bigint;
+  id: number;
+  point: number;
 }
